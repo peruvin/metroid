@@ -1,0 +1,48 @@
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\Metroid.exe.config
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\jpeg.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\libfreetype-6.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\libpng12-0.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\libpng12.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\SDL.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\SDL_gfx.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\SDL_image.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\SDL_mixer.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\SDL_ttf.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\Tao.Sdl.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\zlib1.dll
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\Metroid.exe
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\Metroid.pdb
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\obj\Debug\Metroid.csprojResolveAssemblyReference.cache
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\obj\Debug\Metroid.exe
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\obj\Debug\Metroid.pdb
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\map.png
+c:\users\keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\samus.gif
+C:\Users\Keru\Documents\Visual Studio 2015\Projects\Metroid\Metroid\bin\Debug\img\weapon.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\Metroid.exe.config
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\obj\Debug\Metroid.exe
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\obj\Debug\Metroid.pdb
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\map.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\samus.gif
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\weapon.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\jpeg.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\libfreetype-6.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\libpng12-0.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\libpng12.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\SDL.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\SDL_gfx.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\SDL_image.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\SDL_mixer.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\SDL_ttf.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\Tao.Sdl.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\zlib1.dll
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\Metroid.exe
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\Metroid.pdb
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\obj\Debug\Metroid.csprojResolveAssemblyReference.cache
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\title.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\s1.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\s2.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\s3.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\s4.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\stars.png
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\font\Joystix.ttf
+C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\font\VeraSansBold.ttf
