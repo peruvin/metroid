@@ -15,14 +15,17 @@ class Room
     public int DoorUp { get; set; }
     public int DoorDown { get; set; }
 
+    public Image Background { get; set; }
     public List<Block> BlocksList {get; set;}
+
 
     public Room(string id)
     {
-        /*TODO: Read the room from a file*/
+        /*TODO: Read the room from a file and put the correct filename*/
 
-        /*
+        Background = new Image("img/s1.png", 300, 212);
         this.Id = id;
+        /*
         string line;
         try
         { 
