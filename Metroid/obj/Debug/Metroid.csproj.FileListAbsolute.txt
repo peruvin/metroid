@@ -46,3 +46,11 @@ C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\s4.
 C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\img\stars.png
 C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\font\Joystix.ttf
 C:\Users\BlaiddCrow\Documents\DAM\Programacion\Metroid\Metroid\bin\Debug\font\VeraSansBold.ttf
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\s1.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\s2.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\s3.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\s4.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\stars.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\title.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\font\Joystix.ttf
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\font\VeraSansBold.ttf

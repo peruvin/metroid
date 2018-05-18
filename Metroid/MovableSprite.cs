@@ -2,7 +2,9 @@
 {
     const byte TOTAL_MOVEMENTS = 15;
     const byte SPRITE_CHANGE = 15;
-    
+    public const int MOVE_ANIMATION_DELAY = 15;
+    public const int STILL_ANIMATION_DELAY = 100;
+
 
     public enum SpriteMovement { LEFT, RIGHT, STILL_LEFT, STILL_RIGHT, STILL_LEFT_UP,
                                  STILL_RIGHT_UP, CHROUCH_LEFT, CHROUCH_RIGHT, LEFT_UP_DIAGONAL,

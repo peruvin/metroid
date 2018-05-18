@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 class BasicBeam : Weapon
 {
-    public bool CanShoot { get; set; }
+    
 
     public BasicBeam(short xinc, short yinc, Player shootBy) : base(xinc, yinc, 100, shootBy)
     {
@@ -15,7 +15,7 @@ class BasicBeam : Weapon
         // Coordinates of the weapon firing in all directions 
 
 
-        /*Uncompleted coordinates*/
+        /*TODO: Uncompleted coordinates*/
 
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] {  1};
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] { 1 };
