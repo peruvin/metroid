@@ -4,14 +4,15 @@
 class Player : MovableSprite
 {
 
-
-
     public short[] HealthPoints { get; set; }
     public string LastMovement { get; set; }
+    public string AimDirection { get; set; }
+
     public bool IsChrouching { get; set; }
     public bool IsBallForm { get; set; }
     public bool CanConvertToBall { get; set; }
-    public string AimDirection { get; set; }
+    public bool IsAimingDiagonal { get; set; }
+    public bool IsLookingUp { get; set; }
 
     public Weapon PrimaryWeapon {get;set;}
     public Weapon MissileWeapon { get; set; }
@@ -21,9 +22,12 @@ class Player : MovableSprite
     public Player() : base(new Image("img/samus.gif", 1333, 757))
     {
         LastMovement = "LEFT";
+
         IsChrouching = false;
         IsBallForm = false;
         CanConvertToBall = false;
+        IsAimingDiagonal = false;
+        IsLookingUp = false;
 
         PrimaryWeapon = new BasicBeam(1, 1, this);
 
@@ -151,52 +155,128 @@ class Player : MovableSprite
 
     }
 
+    public void MoveLeft()
+    {
+        MoveTo((short)(X - 1), Y);
+
+        if (IsBallForm)
+        {
+            Animate(MovableSprite.SpriteMovement.BALL_FORM, MOVE_ANIMATION_DELAY);
+        }
+        else if (IsAimingDiagonal)
+        {
+            Animate(MovableSprite.SpriteMovement.LEFT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
+        }
+        else
+        {
+            Animate(MovableSprite.SpriteMovement.LEFT, MOVE_ANIMATION_DELAY);
+        }
+
+        LastMovement = "LEFT";
+        IsChrouching = false;
+        CanConvertToBall = false;
+
+    }
+
+    public void MoveRight()
+    {
+        MoveTo((short)(X + 1), Y);
+
+        if (IsBallForm)
+        {
+            Animate(MovableSprite.SpriteMovement.BALL_FORM, MOVE_ANIMATION_DELAY);
+        }
+        else if (IsAimingDiagonal)
+        {
+            Animate(MovableSprite.SpriteMovement.RIGHT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
+        }
+        else
+        {
+            Animate(MovableSprite.SpriteMovement.RIGHT, MOVE_ANIMATION_DELAY);
+        }
+        LastMovement = "RIGHT";
+        IsChrouching = false;
+        CanConvertToBall = false;
+    }
+
+    public void StillLeft()
+    {
+        if (IsLookingUp)
+        {
+            Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP, 100);
+            IsChrouching = false;
+            CanConvertToBall = false;
+        }
+        else
+        {
+            if (IsChrouching)
+            {
+                if (!IsAimingDiagonal)
+                {
+                    Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT, 100);
+                }
+                else
+                {
+                    Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL, 100);
+                }
+            }
+            else if (IsBallForm)
+                Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
+            else if (IsAimingDiagonal)
+                Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
+            else
+                Animate(MovableSprite.SpriteMovement.STILL_LEFT, STILL_ANIMATION_DELAY);
+        }
+    }
+
+    public void StillRight()
+    {
+        if (IsLookingUp)
+        {
+            Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP, STILL_ANIMATION_DELAY);
+            IsChrouching = false;
+            CanConvertToBall = false;
+        }
+        else
+        {
+            if (IsChrouching)
+            {
+                if (!IsAimingDiagonal)
+                {
+                    Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT, STILL_ANIMATION_DELAY);
+                }
+                else
+                {
+                    Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL, STILL_ANIMATION_DELAY);
+                }
+            }
+            else if (IsBallForm)
+                Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
+            else if (IsAimingDiagonal)
+                Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
+            else
+                Animate(MovableSprite.SpriteMovement.STILL_RIGHT, STILL_ANIMATION_DELAY);
+        }
+    }
 
     public void MovePlayer(Hardware hardware)
     {
-
-        /*TODO: set AimDirection to it's value when moving*/
         if (hardware.IsKeyPressed(Hardware.KEY_A))
         {
-            MoveTo((short)(X - 1), Y);
-
-            if (IsBallForm)
+            if(hardware.IsKeyPressed(Hardware.KEY_W))
             {
-                Animate(MovableSprite.SpriteMovement.BALL_FORM, MOVE_ANIMATION_DELAY);
+                IsAimingDiagonal = true;
             }
-            else if (hardware.IsKeyPressed(Hardware.KEY_SHIFT) || hardware.IsKeyPressed(Hardware.KEY_W))
-            {
-                Animate(MovableSprite.SpriteMovement.LEFT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
-            }
-            else
-            {
-                Animate(MovableSprite.SpriteMovement.LEFT, MOVE_ANIMATION_DELAY);
-            }
-
-            LastMovement = "LEFT";
-            IsChrouching = false;
-            CanConvertToBall = false;
+            MoveLeft();
         }
 
         if (hardware.IsKeyPressed(Hardware.KEY_D))
         {
-            MoveTo((short)(X + 1), Y);
-
-            if (IsBallForm)
+            if (hardware.IsKeyPressed(Hardware.KEY_W))
             {
-                Animate(MovableSprite.SpriteMovement.BALL_FORM, MOVE_ANIMATION_DELAY);
+                IsAimingDiagonal = true;
             }
-            else if (hardware.IsKeyPressed(Hardware.KEY_SHIFT) || hardware.IsKeyPressed(Hardware.KEY_W))
-            {
-                Animate(MovableSprite.SpriteMovement.RIGHT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
-            }
-            else
-            {
-                Animate(MovableSprite.SpriteMovement.RIGHT, MOVE_ANIMATION_DELAY);
-            }
-            LastMovement = "RIGHT";
-            IsChrouching = false;
-            CanConvertToBall = false;
+            MoveRight();
         }
 
 
@@ -223,67 +303,35 @@ class Player : MovableSprite
             CanConvertToBall = false;
         }
 
+        if(hardware.IsKeyPressed(Hardware.KEY_SHIFT))
+        {
+            IsAimingDiagonal = true;
+        }
+
+        if(!hardware.IsKeyPressed(Hardware.KEY_SHIFT))
+        {
+            IsAimingDiagonal = false;
+        }
+
+        if (hardware.IsKeyPressed(Hardware.KEY_W))
+        {
+            IsLookingUp = true;
+        }
+
+        if (!hardware.IsKeyPressed(Hardware.KEY_W))
+        {
+            IsLookingUp = false;
+        }
 
         if ((!hardware.IsKeyPressed(Hardware.KEY_D)) && (!hardware.IsKeyPressed(Hardware.KEY_A)))
         {
             if (LastMovement == "LEFT")
             {
-                if (hardware.IsKeyPressed(Hardware.KEY_W))
-                {
-                    Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP, 100);
-                    IsChrouching = false;
-                    CanConvertToBall = false;
-                }
-                else
-                {
-                    if (IsChrouching)
-                    {
-                        if (!hardware.IsKeyPressed(Hardware.KEY_SHIFT))
-                        {
-                            Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT, 100);
-                        }
-                        else
-                        {
-                            Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL, 100);
-                        }
-                    }
-                    else if (IsBallForm)
-                        Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
-                    else if (hardware.IsKeyPressed(Hardware.KEY_SHIFT))
-                        Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
-                    else
-                        Animate(MovableSprite.SpriteMovement.STILL_LEFT, STILL_ANIMATION_DELAY);
-                }
+                StillLeft();
             }
             else if (LastMovement == "RIGHT")
             {
-                if (hardware.IsKeyPressed(Hardware.KEY_W))
-                {
-                    Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP, STILL_ANIMATION_DELAY);
-                    IsChrouching = false;
-                    CanConvertToBall = false;
-                }
-                else
-                {
-                    if (IsChrouching)
-                    {
-                        if (!hardware.IsKeyPressed(Hardware.KEY_SHIFT))
-                        {
-                            Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT, STILL_ANIMATION_DELAY);
-                        }
-                        else
-                        {
-                            Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL, STILL_ANIMATION_DELAY);
-                        }
-                    }
-                    else if (IsBallForm)
-                        Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
-                    else if (hardware.IsKeyPressed(Hardware.KEY_SHIFT))
-                        Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
-                    else
-                        Animate(MovableSprite.SpriteMovement.STILL_RIGHT, STILL_ANIMATION_DELAY);
-                }
-
+                StillRight();
             }
             else
             {

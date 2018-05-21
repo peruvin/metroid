@@ -21,10 +21,13 @@ class Room
 
     public Room(string id)
     {
-        /*TODO: Read the room from a file and put the correct filename*/
+        
 
         Background = new Image("img/s1.png", 300, 212);
         this.Id = id;
+
+        /*TODO: Read the room from a file and put the correct filename (in a function)*/
+
         /*
         string line;
         try

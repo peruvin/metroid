@@ -49,13 +49,21 @@ class WelcomeScreen : Screen
 
     public override void Show()
     {
-        title.MoveTo(
-               (short)((Program.SCREEN_WIDTH / 2) - (title.ImageWidth / 2)),
-               50);
+        int animCoordinates = 0;
         background.MoveTo(0, 0);
 
         do
         {
+            if(animCoordinates<250)
+            {
+
+                title.MoveTo(
+                        (short)((Program.SCREEN_WIDTH / 2) - (title.ImageWidth / 2)),
+                        (short)(-200+animCoordinates));
+            }
+
+            
+
             hardware.ClearScreen();
             hardware.DrawImage(background);
             hardware.DrawImage(title);
@@ -65,6 +73,8 @@ class WelcomeScreen : Screen
 
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
                 exit = true;
+
+            animCoordinates++;
         }
         while (!exit);
     }

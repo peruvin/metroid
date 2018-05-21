@@ -7,7 +7,7 @@ class Map
 
     public Map()
     {
-        SpriteSheet = new global::Image("map.png",162,252);
+        SpriteSheet = new Image("map.png",162,252);
     }
 }
 
