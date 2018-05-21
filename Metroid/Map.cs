@@ -2,12 +2,11 @@
 
 class Map
 {
-    public List<Room> RoomList;
-    public Image SpriteSheet;
+    public List<SquareRoom> RoomList;
 
     public Map()
     {
-        SpriteSheet = new Image("map.png",162,252);
+
     }
 }
 

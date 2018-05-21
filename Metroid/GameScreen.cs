@@ -8,7 +8,7 @@ class GameScreen : Screen
 {
     public Player character { get; set; }
     public List<Weapon> weaponList { get; set; }
-    public List<Room> roomList { get; set; }
+    public CompleteRoom CurrentRoom { get; set; }
 
     public GameScreen(Hardware hardware) : base(hardware)
     {
