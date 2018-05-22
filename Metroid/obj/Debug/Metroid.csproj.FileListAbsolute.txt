@@ -54,3 +54,7 @@ C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\im
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\title.png
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\font\Joystix.ttf
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\font\VeraSansBold.ttf
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\maps\1.dat
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\maps\2.dat
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\maps\3.dat
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\1718.png

@@ -30,6 +30,38 @@ class Sprite
         Y = y;
     }
 
+    public bool CollidesWith(Sprite sp)
+    {
+        return (X + SpriteWidth > sp.X && X < sp.X + sp.SpriteWidth &&
+                Y + SpriteHeight > sp.Y && Y < sp.Y + sp.SpriteHeight);
+    }
+
+    public bool CollidesWith(List<Sprite> sprites)
+    {
+        foreach (Sprite sp in sprites)
+            if (this.CollidesWith(sp))
+                return true;
+        return false;
+    }
+
+    public bool CollidesWith(Sprite sprite, short w1, short h1, short w2, short h2)
+    {
+        return (X + w1 >= sprite.X && X <= sprite.X + w2 &&
+                Y + h1 >= sprite.Y && Y <= sprite.Y + h2);
+    }
+
+    public void Fall()
+    {
+        this.Y++;
+    }
+
+    public bool IsOver(Sprite sprite)
+    {
+        return (this.CollidesWith(sprite, this.SpriteWidth, this.SpriteHeight,
+            sprite.SpriteWidth, sprite.SpriteHeight) &&
+            sprite.Y >= this.Y + this.SpriteHeight * 0.9);
+    }
+
 
 }
 

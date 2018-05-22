@@ -1,6 +1,6 @@
 ﻿class MovableSprite : Sprite
 {
-    const byte TOTAL_MOVEMENTS = 15;
+    const byte TOTAL_MOVEMENTS = 16;
     const byte SPRITE_CHANGE = 15;
     public const int MOVE_ANIMATION_DELAY = 15;
     public const int STILL_ANIMATION_DELAY = 100;
@@ -9,7 +9,7 @@
     public enum SpriteMovement { LEFT, RIGHT, STILL_LEFT, STILL_RIGHT, STILL_LEFT_UP,
                                  STILL_RIGHT_UP, CHROUCH_LEFT, CHROUCH_RIGHT, LEFT_UP_DIAGONAL,
                                  RIGHT_UP_DIAGONAL, STILL_LEFT_UP_DIAGONAL, STILL_RIGHT_UP_DIAGONAL,
-                                 CHROUCH_LEFT_DOWN_DIAGONAL, CHROUCH_RIGHT_DOWN_DIAGONAL, BALL_FORM }
+                                 CHROUCH_LEFT_DOWN_DIAGONAL, CHROUCH_RIGHT_DOWN_DIAGONAL, BALL_FORM, STILL_CENTER }
 
     public SpriteMovement CurrentDirection { get; set; }
     byte CurrentSprite { get; set; }

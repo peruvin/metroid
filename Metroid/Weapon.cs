@@ -24,7 +24,6 @@ class Weapon : MovableSprite
     {
         foreach(Weapon shot in weaponList)
         {
-            /*TODO: Remove the previous position of the shot before drawing the new one*/
             hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
             shot.X += shot.XIncrement;
             shot.Y += shot.YIncrement;

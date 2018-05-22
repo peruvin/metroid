@@ -4,6 +4,9 @@
 class Player : MovableSprite
 {
 
+    const float MAX_VERTICAL_SPEED = 2.0f;
+    const float VERTICAL_SPEED_DECREMENT = 0.015f;
+
     public short[] HealthPoints { get; set; }
     public string LastMovement { get; set; }
     public string AimDirection { get; set; }
@@ -13,6 +16,14 @@ class Player : MovableSprite
     public bool CanConvertToBall { get; set; }
     public bool IsAimingDiagonal { get; set; }
     public bool IsLookingUp { get; set; }
+    public bool IsFalling { get; set; }
+    public bool IsJumping { get; set; }
+
+    public float VerticalSpeed { get; set; }
+    public float HorizontalSpeed { get; set; }
+
+    public short OldX;
+    public short OldY;
 
     public Weapon PrimaryWeapon {get;set;}
     public Weapon MissileWeapon { get; set; }
@@ -22,12 +33,17 @@ class Player : MovableSprite
     public Player() : base(new Image("img/samus.gif", 1333, 757))
     {
         LastMovement = "LEFT";
+        AimDirection = "LEFT";
 
         IsChrouching = false;
         IsBallForm = false;
         CanConvertToBall = false;
         IsAimingDiagonal = false;
         IsLookingUp = false;
+        IsFalling = false;
+        IsJumping = false;
+        VerticalSpeed = 0.0f;
+        HorizontalSpeed = 0.0f;
 
         PrimaryWeapon = new BasicBeam(1, 1, this);
 
@@ -85,6 +101,14 @@ class Player : MovableSprite
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.BALL_FORM] = new int[] { 107,107,107,107};
     }
 
+    public void FillOldCoordinates()
+    {
+        OldX = X;
+        OldY = Y;
+    }
+
+
+
     public void CreateNewShots(Hardware hardware, List<Weapon> weaponList)
     {
         /*For now, it always creates a BasicBeam shot, later, I will add another weapon parameter to create shots from that specific class*/
@@ -96,10 +120,12 @@ class Player : MovableSprite
 
         if (!hardware.IsKeyPressed(Hardware.KEY_M) && PrimaryWeapon.CanShoot)
         {
+            PrimaryWeapon.CanShoot = false;
             BasicBeam tempbeam;
 
             switch (AimDirection)
             {
+                /*TODO: Starting X and Y will change slightly their positions*/
                 case "LEFT":
                     tempbeam = new BasicBeam(-1, 0, this);
                     tempbeam.X = this.X;
@@ -135,8 +161,13 @@ class Player : MovableSprite
                     tempbeam.X = (short)(this.X);
                     tempbeam.Y = (short)(this.Y);
                     break;
-                case "CHROUCH_LEFT_UP_DIAGONAL":
+                case "CHROUCH_RIGHT_DOWN_DIAGONAL":
                     tempbeam = new BasicBeam(1, 1, this);
+                    tempbeam.X = (short)(this.X);
+                    tempbeam.Y = (short)(this.Y);
+                    break;
+                case "UP":
+                    tempbeam = new BasicBeam(0, -1, this);
                     tempbeam.X = (short)(this.X);
                     tempbeam.Y = (short)(this.Y);
                     break;
@@ -166,10 +197,12 @@ class Player : MovableSprite
         else if (IsAimingDiagonal)
         {
             Animate(MovableSprite.SpriteMovement.LEFT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
+            AimDirection = "LEFT_UP_DIAGONAL";
         }
         else
         {
             Animate(MovableSprite.SpriteMovement.LEFT, MOVE_ANIMATION_DELAY);
+            AimDirection = "LEFT";
         }
 
         LastMovement = "LEFT";
@@ -189,10 +222,12 @@ class Player : MovableSprite
         else if (IsAimingDiagonal)
         {
             Animate(MovableSprite.SpriteMovement.RIGHT_UP_DIAGONAL, MOVE_ANIMATION_DELAY);
+            AimDirection = "RIGHT_UP_DIAGONAL";
         }
         else
         {
             Animate(MovableSprite.SpriteMovement.RIGHT, MOVE_ANIMATION_DELAY);
+            AimDirection = "RIGHT";
         }
         LastMovement = "RIGHT";
         IsChrouching = false;
@@ -203,6 +238,7 @@ class Player : MovableSprite
     {
         if (IsLookingUp)
         {
+            AimDirection = "UP";
             Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP, 100);
             IsChrouching = false;
             CanConvertToBall = false;
@@ -214,18 +250,29 @@ class Player : MovableSprite
                 if (!IsAimingDiagonal)
                 {
                     Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT, 100);
+                    AimDirection = "CHROUCH_LEFT";
                 }
                 else
                 {
                     Animate(MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL, 100);
+                    AimDirection = "CHROUCH_LEFT_DOWN_DIAGONAL";
                 }
             }
             else if (IsBallForm)
+            {
                 Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
+            }
             else if (IsAimingDiagonal)
+            {
                 Animate(MovableSprite.SpriteMovement.STILL_LEFT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
+                AimDirection = "LEFT_UP_DIAGONAL";
+            }
             else
+            {
                 Animate(MovableSprite.SpriteMovement.STILL_LEFT, STILL_ANIMATION_DELAY);
+                AimDirection = "LEFT";
+            }
+                
         }
     }
 
@@ -234,6 +281,7 @@ class Player : MovableSprite
         if (IsLookingUp)
         {
             Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP, STILL_ANIMATION_DELAY);
+            AimDirection = "UP";
             IsChrouching = false;
             CanConvertToBall = false;
         }
@@ -244,23 +292,55 @@ class Player : MovableSprite
                 if (!IsAimingDiagonal)
                 {
                     Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT, STILL_ANIMATION_DELAY);
+                    AimDirection = "CHROUCH_RIGHT";
                 }
                 else
                 {
                     Animate(MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL, STILL_ANIMATION_DELAY);
+                    AimDirection = "CHROUCH_RIGHT_DOWN_DIAGONAL";
                 }
             }
             else if (IsBallForm)
+            {
                 Animate(MovableSprite.SpriteMovement.BALL_FORM, STILL_ANIMATION_DELAY);
+            }
             else if (IsAimingDiagonal)
+            {
                 Animate(MovableSprite.SpriteMovement.STILL_RIGHT_UP_DIAGONAL, STILL_ANIMATION_DELAY);
+                AimDirection = "RIGHT_UP_DIAGONAL";
+            }
             else
+            {
                 Animate(MovableSprite.SpriteMovement.STILL_RIGHT, STILL_ANIMATION_DELAY);
+                AimDirection = "RIGHT";
+            }
+                
         }
     }
 
     public void MovePlayer(Hardware hardware)
     {
+
+        /* Temporal code to jump and fall
+         TODO: create the Jump function and fix the Jump itself*/
+        if(IsFalling)
+        {
+            Fall();
+        }
+        else if(IsJumping)
+        {
+            MoveTo(X, (short)(Y + VerticalSpeed));
+            VerticalSpeed += VERTICAL_SPEED_DECREMENT;
+            if (VerticalSpeed > MAX_VERTICAL_SPEED)
+                VerticalSpeed = MAX_VERTICAL_SPEED;
+        }
+        else if(hardware.IsKeyPressed(Hardware.KEY_SPACE))
+        {
+            IsJumping = true;
+            VerticalSpeed = -1 * MAX_VERTICAL_SPEED;
+
+        }
+
         if (hardware.IsKeyPressed(Hardware.KEY_A))
         {
             if(hardware.IsKeyPressed(Hardware.KEY_W))
