@@ -72,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="dat\map.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="font\Joystix.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -4,8 +4,8 @@
 class Player : MovableSprite
 {
 
-    const float MAX_VERTICAL_SPEED = 2.0f;
-    const float VERTICAL_SPEED_DECREMENT = 0.015f;
+    const short MAX_VERTICAL_SPEED = 16;
+    const short VERTICAL_SPEED_DECREMENT = 2;
 
     public short[] HealthPoints { get; set; }
     public string LastMovement { get; set; }
@@ -19,8 +19,7 @@ class Player : MovableSprite
     public bool IsFalling { get; set; }
     public bool IsJumping { get; set; }
 
-    public float VerticalSpeed { get; set; }
-    public float HorizontalSpeed { get; set; }
+    public short VerticalSpeed { get; set; }
 
     public short OldX;
     public short OldY;
@@ -42,8 +41,7 @@ class Player : MovableSprite
         IsLookingUp = false;
         IsFalling = false;
         IsJumping = false;
-        VerticalSpeed = 0.0f;
-        HorizontalSpeed = 0.0f;
+        VerticalSpeed = 0;
 
         PrimaryWeapon = new BasicBeam(1, 1, this);
 
@@ -323,23 +321,31 @@ class Player : MovableSprite
 
         /* Temporal code to jump and fall
          TODO: create the Jump function and fix the Jump itself*/
-        if(IsFalling)
+        
+        if (IsFalling)
         {
             Fall();
         }
-        else if(IsJumping)
+
+        if (IsJumping)
         {
             MoveTo(X, (short)(Y + VerticalSpeed));
             VerticalSpeed += VERTICAL_SPEED_DECREMENT;
-            if (VerticalSpeed > MAX_VERTICAL_SPEED)
-                VerticalSpeed = MAX_VERTICAL_SPEED;
+            if(VerticalSpeed>=0)
+            {
+                IsJumping = false;
+                IsFalling = true;
+            }
         }
-        else if(hardware.IsKeyPressed(Hardware.KEY_SPACE))
+
+
+        if (hardware.IsKeyPressed(Hardware.KEY_SPACE)&&!IsJumping&&!IsFalling)
         {
             IsJumping = true;
-            VerticalSpeed = -1 * MAX_VERTICAL_SPEED;
-
+            VerticalSpeed = (short)(-1 * MAX_VERTICAL_SPEED);
         }
+
+
 
         if (hardware.IsKeyPressed(Hardware.KEY_A))
         {
@@ -418,6 +424,7 @@ class Player : MovableSprite
 
             }
         }
+
     }
 }
 

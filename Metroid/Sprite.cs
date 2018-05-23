@@ -52,7 +52,7 @@ class Sprite
 
     public void Fall()
     {
-        this.Y++;
+        Y++;
     }
 
     public bool IsOver(Sprite sprite)

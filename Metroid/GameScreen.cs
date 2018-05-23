@@ -28,12 +28,12 @@ class GameScreen : Screen
     public void CreateRooms()
     {
         AllRooms.Add(new CompleteRoom("A"));
-        AllRooms[0].AddSquareRoom("1",0,0);
+        AllRooms[PosCurrentRoom].AddSquareRoom("1",0,0);
         
-        AllRooms[0].AddSquareRoom("2",1,0);
-        AllRooms[0].AddSquareRoom("3",0,1);
+        AllRooms[PosCurrentRoom].AddSquareRoom("2",1,0);
+        AllRooms[PosCurrentRoom].AddSquareRoom("3",0,1);
         
-        AllRooms[0].LoadCompleteRoom();
+        AllRooms[PosCurrentRoom].LoadCompleteRoom();
     }
 
     public override void Show()
@@ -62,12 +62,6 @@ class GameScreen : Screen
                 block.Animate(MovableSprite.SpriteMovement.STILL_CENTER, 1);
             }
 
-            if (character.IsFalling && character.Y == (short)(Program.SCREEN_HEIGHT - character.SpriteHeight))
-            {
-                    character.MoveTo(character.X, (short)(Program.SCREEN_HEIGHT - character.SpriteHeight));
-                    character.IsFalling = false;
-            }
-
             hardware.UpdateScreen();
 
 
@@ -85,10 +79,9 @@ class GameScreen : Screen
 
 
             /*Temporal fall to test the jumps
-             TODO: move it into a function and fix the problem with the jump*/
-            character.IsFalling = true;
+             TODO: move it into a function when the CompleteRooms are connected*/
 
-            character.IsFalling = !character.IsJumping;
+            character.IsFalling = true;
 
             foreach (Block block in AllRooms[0].BlocksList)
             {
@@ -96,17 +89,8 @@ class GameScreen : Screen
                 {
                     character.MoveTo(character.X, (short)(block.Y - character.SpriteHeight));
                     character.IsFalling = false;
-                    character.IsJumping = false;
                 }
             }
-
-            if (character.IsFalling && character.Y == (short)(Program.SCREEN_HEIGHT - character.SpriteHeight))
-            {
-                character.MoveTo(character.X, (short)(Program.SCREEN_HEIGHT - character.SpriteHeight));
-                character.IsFalling = false;
-                character.IsJumping = false;
-            }
-
 
 
 
