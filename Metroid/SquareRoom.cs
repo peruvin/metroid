@@ -35,6 +35,8 @@ class SquareRoom
         this.PositionYInCompleteRoom =PositionYInCompleteRoom;
     }
 
+
+
     public void Load()
     {
         

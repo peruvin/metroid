@@ -4,10 +4,9 @@ using System;
 
 class Map
 {
-    public List<SquareRoom> RoomList;
     public string FileName { get; set; }
 
-    public Map()
+    public Map() 
     {
         FileName = "dat/map.dat";
     }
@@ -26,10 +25,19 @@ class Map
                 Third number("0"): The y position of the SquareRoom in the CompleteRoom
              */
             BinaryWriter file = new BinaryWriter(File.Open(FileName,FileMode.Create));
-            file.Write("A-1-0-0");
-            file.Write("A-2-1-0");
-            file.Write("A-3-0-1");
+            file.Write("A");
 
+            file.Write("1");
+            file.Write(0);
+            file.Write(0);
+            file.Write("2");
+            file.Write(1);
+            file.Write(0);
+            file.Write("3");
+            file.Write(0);
+            file.Write(1);
+
+            file.Write(".");
 
             file.Write(";");
             file.Close();
@@ -40,23 +48,40 @@ class Map
         }
     }
 
-    public void LoadMap()
+    /*This function will replace the CreateRooms function in GameScreen class*/
+
+    public void LoadMap(List<CompleteRoom> allRooms)
     {
         try
         {
             BinaryReader file = new BinaryReader(File.Open(FileName, FileMode.Open));
-            string roominfo;
+
+            string CompleteRoomId;
+            string SquareRoomId;
+            int posXInCompleteRoom;
+            int posYInCompleteRoom;
 
             do
             {
-                roominfo = file.ReadString();
+                CompleteRoomId = file.ReadString();
 
-                if(roominfo!=";")
+                if(CompleteRoomId != ";")
                 {
-                    string[] infoparsed = roominfo.Split('-');
-                    
+                    allRooms.Add(new CompleteRoom(CompleteRoomId));
+                    CompleteRoomId = file.ReadString();
+                    do
+                    {
+                        SquareRoomId = file.ReadString();
+                        if(SquareRoomId!=".")
+                        {
+                            posXInCompleteRoom = file.ReadInt32();
+                            posYInCompleteRoom = file.ReadInt32();
+                            allRooms[allRooms.Count-1].AddSquareRoom(SquareRoomId, posXInCompleteRoom, posYInCompleteRoom);
+                        }
+                    }
+                    while (SquareRoomId != ".");
                 }
-            } while (roominfo != ";");
+            } while (CompleteRoomId != ";");
 
             file.Close();
         }
