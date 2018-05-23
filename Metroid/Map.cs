@@ -4,11 +4,11 @@ using System;
 
 class Map
 {
-    public string FileNamer { get; set; }
+    public string FileName { get; set; }
 
     public Map() 
     {
-        FileNamer = "dat/map.dat";
+        FileName = "dat/map.dat";
     }
 
     public void WriteMap()
@@ -17,13 +17,14 @@ class Map
         {
 
             /*
-             A:1=0,0:2=1,0:3=0,1;
+             A#1=0,0:2=1,0:3=0,1
              A is the id of the CompleteRoom
              The random character that appear are separators
-             The numbers in front of the equals sign are the id's of the SquareRooms that compose the CompleteRoom
+             The numbers in front of the equals sign are the ids of the SquareRooms that compose the CompleteRoom
              The numbers separated by commas are the Coordinates of the SquareRoom in the CompleteRoom
             */
-            StreamWriter file = File.CreateText(FileNamer);
+
+            StreamWriter file = File.CreateText(FileName);
 
             file.WriteLine("A#1=0,0:2=1,0:3=0,1");
 
@@ -39,20 +40,20 @@ class Map
 
     public void LoadMap(List<CompleteRoom> allRooms)
     {
+        
+        string line;
+
+        string infoSquareRooms;
+        string xycoordinates;
+
+        string CompleteRoomId;
+        string SquareRoomId;
+        int posXInCompleteRoom;
+        int posYInCompleteRoom;
+
         try
         {
-            StreamReader file = new StreamReader(File.Open(FileNamer, FileMode.Open));
-            string line;
-
-            string infoSquareRooms;
-            string xycoordinates;
-
-            string CompleteRoomId;
-            string SquareRoomId;
-            int posXInCompleteRoom;
-            int posYInCompleteRoom;
-
-
+            StreamReader file = new StreamReader(File.Open(FileName, FileMode.Open));
             do
             {
                 line = file.ReadLine();
@@ -60,10 +61,10 @@ class Map
                 {
 
                     CompleteRoomId = line.Split('#')[0];
-                    allRooms.Add(new CompleteRoom(CompleteRoomId));
                     infoSquareRooms =line.Split('#')[1];
-                    
-                    foreach(string squareroominfo in infoSquareRooms.Split(':'))
+                    allRooms.Add(new CompleteRoom(CompleteRoomId));
+
+                    foreach (string squareroominfo in infoSquareRooms.Split(':'))
                     {
                         SquareRoomId = squareroominfo.Split('=')[0];
 
@@ -74,7 +75,7 @@ class Map
 
                         allRooms[allRooms.Count-1].AddSquareRoom( SquareRoomId, posXInCompleteRoom, posYInCompleteRoom);
                     }
-                    
+                    allRooms[allRooms.Count - 1].LoadCompleteRoom();
 
                 }
             }

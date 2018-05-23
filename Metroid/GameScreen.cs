@@ -25,19 +25,7 @@ class GameScreen : Screen
         Mapper = new Map();
         PosCurrentRoom = 0;
 
-    }
-
-    
-    public void CreateRooms()
-    {
-        AllRooms.Add(new CompleteRoom("A"));
-        AllRooms[PosCurrentRoom].AddSquareRoom("1",0,0);
-        
-        AllRooms[PosCurrentRoom].AddSquareRoom("2",1,0);
-        AllRooms[PosCurrentRoom].AddSquareRoom("3",0,1);
-        
-        AllRooms[PosCurrentRoom].LoadCompleteRoom();
-    }
+    }  
     
     public override void Show()
     {
@@ -48,12 +36,10 @@ class GameScreen : Screen
 
         /*This lines are to load the map from a file in the map class*/
         
+        
         Mapper.WriteMap();
         Mapper.LoadMap(AllRooms);
-        
-        /*
-        CreateRooms();
-        */
+
         do
         {
             keyPressed = hardware.KeyPressed();

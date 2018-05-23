@@ -5,7 +5,7 @@ using System.IO;
 
 class SquareRoom
 {
-    /*TODO: Increase the SQUAREROOM_HEIGHT and SQUAREROOM_WIDTH and change the .dat files to draw bigger SquareRooms*/
+    /*TODO: Increase the SQUAREROOM_HEIGHT and SQUAREROOM_WIDTH and draw bigger SquareRooms in the .dat files*/
 
     public const short SQUAREROOM_HEIGHT = 10;
     public const short SQUAREROOM_WIDTH = 10;
@@ -42,9 +42,7 @@ class SquareRoom
         
         string line;
         try
-        { 
-
-            /*TODO:Change to a binary reader or maybe read another file with the properties of the room*/
+        {
             StreamReader file = File.OpenText("maps/" + IdSquareRoom + ".dat");
             int numrow = 0;
             int numcolumn = 0;
