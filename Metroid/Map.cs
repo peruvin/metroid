@@ -4,11 +4,11 @@ using System;
 
 class Map
 {
-    public string FileName { get; set; }
+    public string FileNamer { get; set; }
 
     public Map() 
     {
-        FileName = "dat/map.dat";
+        FileNamer = "dat/map.dat";
     }
 
     public void WriteMap()
@@ -17,29 +17,16 @@ class Map
         {
 
             /*
-                A-1-0-0 
-             
-                First char("A"):The id of the CompleteRoom 
-                First number("1"): The id of the SquareRoom
-                Second number("0"): The x position of the SquareRoom in the CompleteRoom
-                Third number("0"): The y position of the SquareRoom in the CompleteRoom
-             */
-            BinaryWriter file = new BinaryWriter(File.Open(FileName,FileMode.Create));
-            file.Write("A");
+             A:1=0,0:2=1,0:3=0,1;
+             A is the id of the CompleteRoom
+             The random character that appear are separators
+             The numbers in front of the equals sign are the id's of the SquareRooms that compose the CompleteRoom
+             The numbers separated by commas are the Coordinates of the SquareRoom in the CompleteRoom
+            */
+            StreamWriter file = File.CreateText(FileNamer);
 
-            file.Write("1");
-            file.Write(0);
-            file.Write(0);
-            file.Write("2");
-            file.Write(1);
-            file.Write(0);
-            file.Write("3");
-            file.Write(0);
-            file.Write(1);
+            file.WriteLine("A#1=0,0:2=1,0:3=0,1");
 
-            file.Write(".");
-
-            file.Write(";");
             file.Close();
         }
         catch(IOException e)
@@ -54,34 +41,45 @@ class Map
     {
         try
         {
-            BinaryReader file = new BinaryReader(File.Open(FileName, FileMode.Open));
+            StreamReader file = new StreamReader(File.Open(FileNamer, FileMode.Open));
+            string line;
+
+            string infoSquareRooms;
+            string xycoordinates;
 
             string CompleteRoomId;
             string SquareRoomId;
             int posXInCompleteRoom;
             int posYInCompleteRoom;
 
+
             do
             {
-                CompleteRoomId = file.ReadString();
-
-                if(CompleteRoomId != ";")
+                line = file.ReadLine();
+                if(line!=null)
                 {
+
+                    CompleteRoomId = line.Split('#')[0];
                     allRooms.Add(new CompleteRoom(CompleteRoomId));
-                    CompleteRoomId = file.ReadString();
-                    do
+                    infoSquareRooms =line.Split('#')[1];
+                    
+                    foreach(string squareroominfo in infoSquareRooms.Split(':'))
                     {
-                        SquareRoomId = file.ReadString();
-                        if(SquareRoomId!=".")
-                        {
-                            posXInCompleteRoom = file.ReadInt32();
-                            posYInCompleteRoom = file.ReadInt32();
-                            allRooms[allRooms.Count-1].AddSquareRoom(SquareRoomId, posXInCompleteRoom, posYInCompleteRoom);
-                        }
+                        SquareRoomId = squareroominfo.Split('=')[0];
+
+                        xycoordinates = squareroominfo.Split('=')[1];
+
+                        posXInCompleteRoom = Int32.Parse(xycoordinates.Split(',')[0]);
+                        posYInCompleteRoom = Int32.Parse(xycoordinates.Split(',')[1]);
+
+                        allRooms[allRooms.Count-1].AddSquareRoom( SquareRoomId, posXInCompleteRoom, posYInCompleteRoom);
                     }
-                    while (SquareRoomId != ".");
+                    
+
                 }
-            } while (CompleteRoomId != ";");
+            }
+            while (line!=null);
+
 
             file.Close();
         }

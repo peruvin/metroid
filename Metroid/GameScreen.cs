@@ -47,13 +47,13 @@ class GameScreen : Screen
         character.MoveTo(20,20);
 
         /*This lines are to load the map from a file in the map class*/
-        /*
+        
         Mapper.WriteMap();
         Mapper.LoadMap(AllRooms);
-        */
-
+        
+        /*
         CreateRooms();
-
+        */
         do
         {
             keyPressed = hardware.KeyPressed();
