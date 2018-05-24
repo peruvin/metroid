@@ -20,15 +20,7 @@ class Weapon : MovableSprite
         CanShoot = false;
     }
 
-    public static void DrawAllShots(List<Weapon> weaponList, Hardware hardware)
-    {
-        foreach(Weapon shot in weaponList)
-        {
-            hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
-            shot.X += shot.XIncrement;
-            shot.Y += shot.YIncrement;
-        }
-    }
+
 
     
 

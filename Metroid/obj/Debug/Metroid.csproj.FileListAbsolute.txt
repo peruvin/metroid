@@ -59,3 +59,5 @@ C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\ma
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\maps\3.dat
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\1718.png
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\dat\map.dat
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\menuOptions.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\finger.png

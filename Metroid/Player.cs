@@ -86,14 +86,16 @@ class Player : MovableSprite
 
 
 
+        
+
+
+        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 322 };
+        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 171 };
+
+        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] {  434 };
+        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] { 171 };
+
         /*Uncompleted coordinates*/
-
-
-        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 317 };
-        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 299 };
-
-        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] { 442 };
-        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] { 299 };
 
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.BALL_FORM] = new int[] {720,743,766,788};
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.BALL_FORM] = new int[] { 107,107,107,107};
