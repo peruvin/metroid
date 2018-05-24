@@ -91,6 +91,8 @@ class MenuScreen : Screen
 
 
         }
-        while (OptionSelected!=0);
+        while (OptionSelected==-1);
+
+        /*Switch case here, to call different methods*/
     }
 }

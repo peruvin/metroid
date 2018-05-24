@@ -54,6 +54,7 @@
     <Compile Include="Block.cs" />
     <Compile Include="CompleteRoom.cs" />
     <Compile Include="CreditsScreen.cs" />
+    <Compile Include="Door.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Hardware.cs" />

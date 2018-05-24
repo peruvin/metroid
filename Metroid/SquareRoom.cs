@@ -16,12 +16,6 @@ class SquareRoom
     public string IdSquareRoom { get; set; }
     public CompleteRoom SourceRoom { get; set; }
 
-
-    public int DoorLeft { get; set; }
-    public int DoorRight { get; set; }
-    public int DoorUp { get; set; }
-    public int DoorDown { get; set; }
-
     /*Images to show in the map*/
 
     public Image MapTile { get; set; }
@@ -35,7 +29,7 @@ class SquareRoom
         this.PositionYInCompleteRoom =PositionYInCompleteRoom;
     }
 
-
+    
 
     public void Load()
     {

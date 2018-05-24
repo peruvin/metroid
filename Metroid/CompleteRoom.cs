@@ -12,6 +12,7 @@ class CompleteRoom
     public List<Sprite> BlocksList { get; set; }
     public List<Weapon> WeaponList { get; set; }
     public List<SquareRoom> RoomList { get; set; }
+    public List<Sprite> DoorList { get; set; }
 
 
     public CompleteRoom(string id)
@@ -21,6 +22,7 @@ class CompleteRoom
         BlocksList = new List<Sprite>();
         WeaponList = new List<Weapon>();
         character = new Player();
+        DoorList = new List<Sprite>();
     }
 
     public void DrawAllBlocks(Hardware hardware)
@@ -51,7 +53,20 @@ class CompleteRoom
 
     }
 
-    public void PlayerCollisions()
+    public int PlayerDoorCollisions()
+    {
+        int numreturn = -1;
+        foreach(Door door in DoorList)
+        {
+            if(character.CollidesWith(door))
+            {
+                numreturn = door.GoTo;
+            }
+        }
+        return numreturn;
+    }
+
+    public void PlayerBlockCollisions()
     {
         character.IsFalling = true;
 

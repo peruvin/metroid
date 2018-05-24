@@ -69,7 +69,7 @@ class GameScreen : Screen
             /*Temporal fall to test the jumps
              TODO: move it into a function when the CompleteRooms are connected*/
 
-            AllRooms[PosCurrentRoom].PlayerCollisions();
+            AllRooms[PosCurrentRoom].PlayerBlockCollisions();
 
             // 5. Pause game
 

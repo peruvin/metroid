@@ -34,7 +34,9 @@ class Program
          * D - move right
          * S - chrouch,turn into ball
          * W - aim up
+         * SPACE - jump
          * SHIFT - aim diagonally
+         * M - shoot
          * ESC - exit
          * 
          * Check @Hardware class to see all keys availiable
