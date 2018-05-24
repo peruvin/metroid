@@ -6,9 +6,10 @@ class MenuScreen : Screen
     Image Background;
     Image Menu;
     Image Finger;
-    string[] Options;
-    bool exit;
     int currPos;
+    bool CanGoUp { get; set; }
+    bool CanGoDown { get; set; }
+    bool CanSelect { get; set; }
 
     public MenuScreen(Hardware hardware) : base(hardware)
     {
@@ -16,9 +17,10 @@ class MenuScreen : Screen
         Background = new Image("img/stars.png", 800, 500);
         Menu = new Image("img/menuOptions.png",600,300);
         Finger = new Image("img/finger.png",296,171);
-        exit = false;
-        Options = new string[4];
         currPos = 0;
+        CanGoUp = false;
+        CanGoDown = false;
+        CanSelect = false;
     }
 
 
@@ -27,10 +29,6 @@ class MenuScreen : Screen
         Background.MoveTo(0,0);
         Menu.MoveTo(10,100);
         Finger.MoveTo(30,100);
-        Options[0] = "PLAY";
-        Options[1] = "CONTROLS";
-        Options[2] = "CREDITS";
-        Options[3] = "EXIT";
         int OptionSelected=-1;
 
         do
@@ -43,24 +41,42 @@ class MenuScreen : Screen
 
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
             {
+                CanSelect = true;
+            }
+
+            if (!hardware.IsKeyPressed(Hardware.KEY_SPACE)&&CanSelect)
+            {
                 OptionSelected = currPos;
             }
 
             if (hardware.IsKeyPressed(Hardware.KEY_W)) 
             {
-                if(currPos==0)
+                CanGoUp = true;
+            }
+
+            if (hardware.IsKeyPressed(Hardware.KEY_S))
+            {
+                CanGoDown = true;
+            }
+
+            if (!hardware.IsKeyPressed(Hardware.KEY_W)&&CanGoUp)
+            {
+                CanGoUp = false;
+                if (currPos == 0)
                 {
                     currPos = 3;
-                    Finger.MoveTo(30, 400);
+                    Finger.MoveTo(30, 300);
                 }
                 else
                 {
                     currPos--;
-                    Finger.MoveTo(30, (short)(Finger.Y-100));
+                    Finger.MoveTo(30, (short)(Finger.Y - 65));
                 }
             }
-            else if (hardware.IsKeyPressed(Hardware.KEY_S))
+
+            if (!hardware.IsKeyPressed(Hardware.KEY_S) && CanGoDown)
             {
+                CanGoDown = false;
                 if (currPos == 3)
                 {
                     currPos = 0;
@@ -69,10 +85,11 @@ class MenuScreen : Screen
                 else
                 {
                     currPos++;
-                    Finger.MoveTo(30, (short)(Finger.Y + 100));
+                    Finger.MoveTo(30, (short)(Finger.Y + 65));
                 }
             }
-                
+
+
         }
         while (OptionSelected!=0);
     }

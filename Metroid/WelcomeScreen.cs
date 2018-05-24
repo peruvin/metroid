@@ -12,6 +12,7 @@ class WelcomeScreen : Screen
     bool exit;
     private int actualImage;
     private int step;
+    bool Canexit;
 
     public WelcomeScreen(Hardware hardware) : base(hardware)
     {
@@ -51,6 +52,7 @@ class WelcomeScreen : Screen
     {
         int animCoordinates = 0;
         background.MoveTo(0, 0);
+        Canexit = false;
 
         do
         {
@@ -72,7 +74,15 @@ class WelcomeScreen : Screen
             hardware.UpdateScreen();
 
             if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+            {
+                Canexit = true;
+            }
+                
+
+            if (!hardware.IsKeyPressed(Hardware.KEY_SPACE)&&Canexit)
+            {
                 exit = true;
+            }
 
             animCoordinates++;
         }
