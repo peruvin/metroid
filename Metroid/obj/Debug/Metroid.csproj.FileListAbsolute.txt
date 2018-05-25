@@ -61,3 +61,6 @@ C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\im
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\dat\map.dat
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\menuOptions.png
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\finger.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\weaver.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\upgrades.png
+C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\hud.png

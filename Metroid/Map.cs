@@ -11,6 +11,8 @@ class Map
         FileName = "dat/map.dat";
     }
 
+    
+
     public void WriteMap()
     {
         try

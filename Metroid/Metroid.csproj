@@ -55,9 +55,13 @@
     <Compile Include="CompleteRoom.cs" />
     <Compile Include="CreditsScreen.cs" />
     <Compile Include="Door.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyWeaver.cs" />
+    <Compile Include="EnergyTank.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Hardware.cs" />
+    <Compile Include="Hud.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MenuScreen.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="Screen.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="SquareRoom.cs" />
+    <Compile Include="Upgrade.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WelcomeScreen.cs" />
   </ItemGroup>
@@ -99,6 +104,9 @@
     <Content Include="img\finger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="img\hud.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\map.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -126,7 +134,13 @@
     <Content Include="img\title.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="img\upgrades.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\weapon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\weaver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="jpeg.dll">

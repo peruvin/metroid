@@ -56,6 +56,16 @@ class SquareRoom
                                         (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn*16)), 
                                         (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow*16))));
                                 break;
+                            case 'W':
+                                SourceRoom.EnemyList.Add(new EnemyWeaver(
+                                    (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
+                                    (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
+                                break;
+                            case 'E':
+                                SourceRoom.UpgradeList.Add(new EnergyTank(
+                                    (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
+                                    (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
+                                break;
                             default:
                                 break;
                         }

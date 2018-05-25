@@ -9,10 +9,14 @@ class CompleteRoom
     public string Id { get; set; }
 
     public Player character { get; set; }
+    public Hud hud { get; set; }
+
     public List<Sprite> BlocksList { get; set; }
     public List<Weapon> WeaponList { get; set; }
     public List<SquareRoom> RoomList { get; set; }
     public List<Sprite> DoorList { get; set; }
+    public List<Enemy> EnemyList { get; set; }
+    public List<Upgrade> UpgradeList { get; set; }
 
 
     public CompleteRoom(string id)
@@ -23,6 +27,30 @@ class CompleteRoom
         WeaponList = new List<Weapon>();
         character = new Player();
         DoorList = new List<Sprite>();
+        EnemyList = new List<Enemy>();
+        UpgradeList = new List<Upgrade>();
+        hud = new Hud();
+    }
+
+
+    /*For now it only draws energy tanks*/
+    public void DrawAllUpgrades(Hardware hardware)
+    {
+        foreach(EnergyTank energytank in UpgradeList)
+        {
+            hardware.DrawSprite(energytank.SpriteSheet, energytank.X, energytank.Y, energytank.SpriteX, energytank.SpriteY, energytank.SpriteWidth, energytank.SpriteHeight);
+            energytank.Animate(MovableSprite.SpriteMovement.STILL_CENTER, 1);
+        }
+    }
+
+    /*For now it only draws energy weavers*/
+    public void DrawAllEnemies(Hardware hardware)
+    {
+        foreach(EnemyWeaver enemy in EnemyList)
+        {
+            hardware.DrawSprite(enemy.SpriteSheet, enemy.X, enemy.Y, enemy.SpriteX, enemy.SpriteY, enemy.SpriteWidth, enemy.SpriteHeight);
+            enemy.Animate(MovableSprite.SpriteMovement.STILL_LEFT, 1);
+        }
     }
 
     public void DrawAllBlocks(Hardware hardware)
@@ -45,6 +73,14 @@ class CompleteRoom
             shot.X += shot.XIncrement;
             shot.Y += shot.YIncrement;
         }
+    }
+
+    public void DrawHud(Hardware hardware)
+    {
+        hud.Animate(MovableSprite.SpriteMovement.STILL_CENTER, 1);
+        hardware.DrawSprite(hud.SpriteSheet, hud.X, hud.Y, hud.SpriteX, hud.SpriteY, hud.SpriteWidth, hud.SpriteHeight);
+       
+
     }
 
     public void DrawPlayer(Hardware hardware)

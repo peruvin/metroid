@@ -23,7 +23,6 @@ class GameScreen : Screen
 
     }
 
-    
 
     
     public override void Show()
@@ -47,10 +46,13 @@ class GameScreen : Screen
             // 1. Draw everything
             hardware.ClearScreen();
 
-
+            
             AllRooms[PosCurrentRoom].DrawPlayer(hardware);
             AllRooms[PosCurrentRoom].DrawAllShots(hardware);
             AllRooms[PosCurrentRoom].DrawAllBlocks(hardware);
+            AllRooms[PosCurrentRoom].DrawAllEnemies(hardware);
+            AllRooms[PosCurrentRoom].DrawAllUpgrades(hardware);
+            AllRooms[PosCurrentRoom].DrawHud(hardware);
 
             hardware.UpdateScreen();
 
