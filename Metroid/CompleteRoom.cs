@@ -14,7 +14,7 @@ class CompleteRoom
     public List<Sprite> BlocksList { get; set; }
     public List<Weapon> WeaponList { get; set; }
     public List<SquareRoom> RoomList { get; set; }
-    public List<Sprite> DoorList { get; set; }
+    public List<Door> DoorList { get; set; }
     public List<Enemy> EnemyList { get; set; }
     public List<Upgrade> UpgradeList { get; set; }
 
@@ -26,7 +26,7 @@ class CompleteRoom
         BlocksList = new List<Sprite>();
         WeaponList = new List<Weapon>();
         character = new Player();
-        DoorList = new List<Sprite>();
+        DoorList = new List<Door>();
         EnemyList = new List<Enemy>();
         UpgradeList = new List<Upgrade>();
         hud = new Hud();
@@ -69,6 +69,16 @@ class CompleteRoom
         foreach (Weapon shot in WeaponList)
         {
             shot.MoveShot();
+            hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
+
+        }
+    }
+
+    public void DrawAllDoors(Hardware hardware)
+    {
+        foreach(Door door in DoorList)
+        {
+            hardware.DrawSprite(door.SpriteSheet, door.X, door.Y, door.SpriteX, door.SpriteY, door.SpriteWidth, door.SpriteHeight);
         }
     }
 
@@ -100,17 +110,25 @@ class CompleteRoom
         }
     }
 
-    public int PlayerDoorCollisions()
+    public InfoNewRoom PlayerDoorCollisions()
     {
-        int numreturn = -1;
+        InfoNewRoom infomovingroom = new InfoNewRoom();
+
+        infomovingroom.numRoom = -1;
+        infomovingroom.Xplayer = -1;
+        infomovingroom.Xplayer = -1;
+
         foreach(Door door in DoorList)
         {
             if(character.CollidesWith(door))
             {
-                numreturn = door.GoTo;
+                infomovingroom.numRoom = door.GoTo;
+                infomovingroom.Xplayer = door.XApparitionPlayer;
+                infomovingroom.Xplayer = door.YApparitionPlayer;
             }
         }
-        return numreturn;
+
+        return infomovingroom;
     }
 
     public void PlayerBlockCollisions()
@@ -135,79 +153,7 @@ class CompleteRoom
 
     public void CreateNewShots(Hardware hardware)
     {
-        /*For now, it always creates a BasicBeam shot, later, I will add another weapon parameter to create shots from that specific class*/
-
-        if (hardware.IsKeyPressed(Hardware.KEY_M))
-        {
-            character.PrimaryWeapon.CanShoot = true;
-        }
-
-        if (!hardware.IsKeyPressed(Hardware.KEY_M) && character.PrimaryWeapon.CanShoot)
-        {
-            character.PrimaryWeapon.CanShoot = false;
-            BasicBeam tempbeam;
-
-            switch (character.AimDirection)
-            {
-                /*TODO: Starting X and Y will change slightly their positions*/
-                case "LEFT":
-                    tempbeam = new BasicBeam(-1, 0, character);
-                    tempbeam.X = (short)character.X;
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "RIGHT":
-                    tempbeam = new BasicBeam(1, 0, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "LEFT_UP_DIAGONAL":
-                    tempbeam = new BasicBeam(-1, -1, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "RIGHT_UP_DIAGONAL":
-                    tempbeam = new BasicBeam(1, -1, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "CHROUCH_LEFT":
-                    tempbeam = new BasicBeam(-1, 0, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "CHROUCH_RIGHT":
-                    tempbeam = new BasicBeam(1, 0, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "CHROUCH_LEFT_DOWN_DIAGONAL":
-                    tempbeam = new BasicBeam(-1, 1, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "CHROUCH_RIGHT_DOWN_DIAGONAL":
-                    tempbeam = new BasicBeam(1, 1, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                case "UP":
-                    tempbeam = new BasicBeam(0, -1, character);
-                    tempbeam.X = (short)(character.X);
-                    tempbeam.Y = (short)(character.Y);
-                    break;
-                default:
-                    tempbeam = new BasicBeam(1, 1, character);
-                    break;
-            }
-
-            if (tempbeam != null)
-            {
-                WeaponList.Add(tempbeam);
-            }
-
-
-        }
-
+        character.CreateNewShots(hardware, WeaponList);
     }
 
 

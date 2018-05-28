@@ -2,7 +2,12 @@
 using System.Threading;
 using System.Collections.Generic;
 
-
+public struct InfoNewRoom
+{
+    public int numRoom;
+    public short Xplayer;
+    public short Yplayer;
+}
 
 class GameScreen : Screen
 {
@@ -12,6 +17,7 @@ class GameScreen : Screen
     public Map Mapper { get; set; }
     public List<CompleteRoom> AllRooms { get; set; }
     public int PosCurrentRoom { get; set; }
+    InfoNewRoom newroom { get; set; }
 
 
 
@@ -52,6 +58,7 @@ class GameScreen : Screen
             AllRooms[PosCurrentRoom].DrawAllBlocks(hardware);
             AllRooms[PosCurrentRoom].DrawAllEnemies(hardware);
             AllRooms[PosCurrentRoom].DrawAllUpgrades(hardware);
+            AllRooms[PosCurrentRoom].DrawAllDoors(hardware);
             AllRooms[PosCurrentRoom].DrawHud(hardware);
 
             hardware.UpdateScreen();
@@ -68,10 +75,15 @@ class GameScreen : Screen
             // 4. Check collisions and update game state
 
 
-            /*Temporal fall to test the jumps
-             TODO: move it into a function when the CompleteRooms are connected*/
-
+            /*If the player collides width a door, he will move to the room where the door is pointing*/
+            newroom =AllRooms[PosCurrentRoom].PlayerDoorCollisions();
+            if(newroom.numRoom >= 0)
+            {
+                PosCurrentRoom = newroom.numRoom;
+                AllRooms[PosCurrentRoom].character.MoveTo(newroom.Xplayer,newroom.Yplayer);
+            }
             AllRooms[PosCurrentRoom].PlayerBlockCollisions();
+            AllRooms[PosCurrentRoom].WeaponBlockCollisions();
 
             // 5. Pause game
 

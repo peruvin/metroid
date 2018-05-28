@@ -66,6 +66,11 @@ class SquareRoom
                                     (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
                                     (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
                                 break;
+                            case 'D':
+                                SourceRoom.DoorList.Add(new Door(
+                                   (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
+                                   (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
+                                break;
                             default:
                                 break;
                         }
