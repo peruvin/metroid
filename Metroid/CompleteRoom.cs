@@ -68,10 +68,7 @@ class CompleteRoom
     {
         foreach (Weapon shot in WeaponList)
         {
-            shot.Animate(MovableSprite.SpriteMovement.LEFT, 10);
-            hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
-            shot.X += shot.XIncrement;
-            shot.Y += shot.YIncrement;
+            shot.MoveShot();
         }
     }
 
@@ -87,6 +84,20 @@ class CompleteRoom
     {
         hardware.DrawSprite(character.SpriteSheet, character.X, character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
 
+    }
+
+    public void WeaponBlockCollisions()
+    {
+        foreach (Weapon shot in WeaponList)
+        {
+            foreach (Block block in BlocksList)
+            {
+                if (shot.CollidesWith(block))
+                {
+                    shot.IsVisible = false;
+                }
+            }
+        }
     }
 
     public int PlayerDoorCollisions()

@@ -18,8 +18,8 @@ class BasicBeam : Weapon
 
         /*TODO: Uncompleted coordinates*/
 
-        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] {  66,118 };
-        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] { 285,285 };
+        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] { 66, 118 };
+        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.LEFT] = new int[] { 285, 285 };
 
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.RIGHT] = new int[] { 23 };
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.RIGHT] = new int[] { 26 };
@@ -41,6 +41,10 @@ class BasicBeam : Weapon
 
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] { 23 };
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_RIGHT_DOWN_DIAGONAL] = new int[] { 26 };
+
+
+        SpriteXCoordinates[(int)MovableSprite.SpriteMovement.DETONATION] = new int[] { 167, 217, 250 };
+        SpriteYCoordinates[(int)MovableSprite.SpriteMovement.DETONATION] = new int[] { 285, 285, 285 };
 
 
 

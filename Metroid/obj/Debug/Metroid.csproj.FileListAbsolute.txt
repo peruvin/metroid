@@ -64,3 +64,41 @@ C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\im
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\weaver.png
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\upgrades.png
 C:\Users\Keru\documents\visual studio 2015\Projects\Metroid\Metroid\bin\Debug\img\hud.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Metroid.exe.config
+C:\Users\Keru\Desktop\metroid\Metroid\obj\Debug\Metroid.exe
+C:\Users\Keru\Desktop\metroid\Metroid\obj\Debug\Metroid.pdb
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\1718.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\finger.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\hud.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\map.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\menuOptions.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\s1.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\s2.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\s3.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\s4.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\samus.gif
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\stars.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\title.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\upgrades.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\weapon.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\weaver.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\jpeg.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\libfreetype-6.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\libpng12-0.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\libpng12.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\SDL.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\SDL_gfx.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\SDL_image.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\SDL_mixer.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\SDL_ttf.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Tao.Sdl.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\zlib1.dll
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\dat\map.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\font\Joystix.ttf
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\font\VeraSansBold.ttf
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\1.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\2.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\3.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Metroid.exe
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Metroid.pdb
+C:\Users\Keru\Desktop\metroid\Metroid\obj\Debug\Metroid.csprojResolveAssemblyReference.cache
