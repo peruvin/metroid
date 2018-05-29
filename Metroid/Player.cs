@@ -33,7 +33,8 @@ class Player : MovableSprite
     {
         LastMovement = "LEFT";
         AimDirection = "LEFT";
-
+        HitboxXMarginLeft = 4;
+        HitboxXMarginRight = 4;
         IsChrouching = false;
         IsBallForm = false;
         CanConvertToBall = false;
@@ -84,11 +85,6 @@ class Player : MovableSprite
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.STILL_RIGHT_UP_DIAGONAL] = new int[] { 198, 238, 277 };
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.STILL_RIGHT_UP_DIAGONAL] = new int[] { 117, 117, 117 };
 
-
-
-        
-
-
         SpriteXCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 322 };
         SpriteYCoordinates[(int)MovableSprite.SpriteMovement.CHROUCH_LEFT_DOWN_DIAGONAL] = new int[] { 171 };
 
@@ -128,43 +124,43 @@ class Player : MovableSprite
                 /*TODO: Starting X and Y will change slightly their positions*/
                 case "LEFT":
                     tempbeam = new BasicBeam(-1, 0, this);
-                    tempbeam.X = this.X;
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X-8);
+                    tempbeam.Y = (short)(this.Y+16);
                     break;
                 case "RIGHT":
                     tempbeam = new BasicBeam(1, 0, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X+24);
+                    tempbeam.Y = (short)(this.Y+16);
                     break;
                 case "LEFT_UP_DIAGONAL":
                     tempbeam = new BasicBeam(-1, -1, this);
-                    tempbeam.X = (short)(this.X);
+                    tempbeam.X = (short)(this.X-8);
                     tempbeam.Y = (short)(this.Y);
                     break;
                 case "RIGHT_UP_DIAGONAL":
                     tempbeam = new BasicBeam(1, -1, this);
-                    tempbeam.X = (short)(this.X);
+                    tempbeam.X = (short)(this.X+24);
                     tempbeam.Y = (short)(this.Y);
                     break;
                 case "CHROUCH_LEFT":
                     tempbeam = new BasicBeam(-1, 0, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X-8);
+                    tempbeam.Y = (short)(this.Y+28);
                     break;
                 case "CHROUCH_RIGHT":
                     tempbeam = new BasicBeam(1, 0, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X+24);
+                    tempbeam.Y = (short)(this.Y+28);
                     break;
                 case "CHROUCH_LEFT_DOWN_DIAGONAL":
                     tempbeam = new BasicBeam(-1, 1, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X - 10);
+                    tempbeam.Y = (short)(this.Y + 38);
                     break;
                 case "CHROUCH_RIGHT_DOWN_DIAGONAL":
                     tempbeam = new BasicBeam(1, 1, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    tempbeam.X = (short)(this.X + 26);
+                    tempbeam.Y = (short)(this.Y + 40);
                     break;
                 case "UP":
                     tempbeam = new BasicBeam(0, -1, this);
@@ -321,14 +317,22 @@ class Player : MovableSprite
     public void MovePlayer(Hardware hardware)
     {
 
-        /* Temporal code to jump and fall
-         TODO: create the Jump function and fix the Jump itself*/
+        
+        if(IsBallForm)
+        {
+            HitboxYMarginUp = 33;      
+        }
+        else
+        {
+            HitboxYMarginUp = 17;
+        }
         
         if (IsFalling)
         {
             Fall();
         }
 
+        /*TODO: Make the jump speed constant counting frames*/
         if (IsJumping)
         {
             MoveTo(X, (short)(Y + VerticalSpeed));

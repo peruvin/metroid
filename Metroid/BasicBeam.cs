@@ -13,6 +13,11 @@ class BasicBeam : Weapon
         SpriteHeight =24;
         SpriteWidth = 24;
 
+
+
+
+        HitboxXMarginRight = 7;
+        HitboxYMarginDown = 7;
         // Coordinates of the weapon firing in all directions 
 
 

@@ -3,8 +3,12 @@ BBBBBBBBBB
          B
          B
          B
-      D  B
+         B
          B
          B
          B
 BBBBBBBBBB
+
+
+
+DOORS=1,6,0,10,10;5,5,0,10,10

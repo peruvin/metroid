@@ -59,8 +59,9 @@ class GameScreen : Screen
             AllRooms[PosCurrentRoom].DrawAllEnemies(hardware);
             AllRooms[PosCurrentRoom].DrawAllUpgrades(hardware);
             AllRooms[PosCurrentRoom].DrawAllDoors(hardware);
+            /*
             AllRooms[PosCurrentRoom].DrawHud(hardware);
-
+            */
             hardware.UpdateScreen();
 
 
