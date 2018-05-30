@@ -7,6 +7,7 @@ public struct InfoNewRoom
     public int numRoom;
     public short Xplayer;
     public short Yplayer;
+
 }
 
 class GameScreen : Screen
@@ -17,7 +18,9 @@ class GameScreen : Screen
     public Map Mapper { get; set; }
     public List<CompleteRoom> AllRooms { get; set; }
     public int PosCurrentRoom { get; set; }
+    public Player character { get; set; }
     InfoNewRoom newroom { get; set; }
+    public short OldXmap;
 
 
 
@@ -26,6 +29,7 @@ class GameScreen : Screen
         AllRooms = new List<CompleteRoom>();
         Mapper = new Map();
         PosCurrentRoom = 0;
+        character = new Player();
 
     }
 
@@ -43,7 +47,7 @@ class GameScreen : Screen
         
         Mapper.WriteMap();
         Mapper.LoadMap(AllRooms);
-        AllRooms[PosCurrentRoom].character.MoveTo(20, 20);
+        character.MoveTo(20, 20);
 
         do
         {
@@ -53,7 +57,7 @@ class GameScreen : Screen
             hardware.ClearScreen();
 
             
-            AllRooms[PosCurrentRoom].DrawPlayer(hardware);
+            AllRooms[PosCurrentRoom].DrawPlayer(hardware, character);
             AllRooms[PosCurrentRoom].DrawAllShots(hardware);
             AllRooms[PosCurrentRoom].DrawAllBlocks(hardware);
             AllRooms[PosCurrentRoom].DrawAllEnemies(hardware);
@@ -66,11 +70,11 @@ class GameScreen : Screen
 
 
             // 2. Move character from keyboard input
-
-
-            AllRooms[PosCurrentRoom].character.FillOldCoordinates();
-            AllRooms[PosCurrentRoom].character.MovePlayer(hardware);
-            AllRooms[PosCurrentRoom].CreateNewShots(hardware);
+            OldXmap = AllRooms[PosCurrentRoom].Xmap;
+            
+            character.FillOldCoordinates();
+            character.MovePlayer(hardware);
+            AllRooms[PosCurrentRoom].CreateNewShots(hardware, character);
             // 3. Move enemies and objects
 
             // 4. Check collisions and update game state
@@ -78,15 +82,17 @@ class GameScreen : Screen
 
             
             
-            AllRooms[PosCurrentRoom].PlayerBlockCollisions();
+            AllRooms[PosCurrentRoom].PlayerBlockCollisions(character,OldXmap);
             AllRooms[PosCurrentRoom].WeaponBlockCollisions();
 
-            newroom = AllRooms[PosCurrentRoom].PlayerDoorCollisions();
+            newroom = AllRooms[PosCurrentRoom].PlayerDoorCollisions(character);
             if (newroom.numRoom >= 0)
             {
                 /*If the player collides width a door, he will move to the room where the door is pointing*/
+                AllRooms[PosCurrentRoom].WeaponList.Clear();
                 PosCurrentRoom = newroom.numRoom;
-                AllRooms[PosCurrentRoom].character.MoveTo(newroom.Xplayer, newroom.Yplayer);
+                character.MoveTo(newroom.Xplayer, newroom.Yplayer);
+
             }
 
             // 5. Pause game

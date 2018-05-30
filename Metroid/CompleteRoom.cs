@@ -7,8 +7,6 @@ class CompleteRoom
 {
 
     public string Id { get; set; }
-
-    public Player character { get; set; }
     public Hud hud { get; set; }
 
     public List<Sprite> BlocksList { get; set; }
@@ -18,18 +16,21 @@ class CompleteRoom
     public List<Enemy> EnemyList { get; set; }
     public List<Upgrade> UpgradeList { get; set; }
 
+    public short  Xmap {get;set;}
+    public short Width {get; set;}
+
 
     public CompleteRoom(string id)
     {
         this.Id = id;
         RoomList = new List<SquareRoom>();
         BlocksList = new List<Sprite>();
-        WeaponList = new List<Weapon>();
-        character = new Player();
+        WeaponList = new List<Weapon>();  
         DoorList = new List<Door>();
         EnemyList = new List<Enemy>();
         UpgradeList = new List<Upgrade>();
         hud = new Hud();
+        Xmap = 0;
     }
 
 
@@ -93,7 +94,7 @@ class CompleteRoom
 
     }
 
-    public void DrawPlayer(Hardware hardware)
+    public void DrawPlayer(Hardware hardware, Player character)
     {
         hardware.DrawSprite(character.SpriteSheet, character.X, character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
 
@@ -113,7 +114,7 @@ class CompleteRoom
         }
     }
 
-    public InfoNewRoom PlayerDoorCollisions()
+    public InfoNewRoom PlayerDoorCollisions(Player character)
     {
         InfoNewRoom infomovingroom = new InfoNewRoom();
 
@@ -134,7 +135,7 @@ class CompleteRoom
         return infomovingroom;
     }
 
-    public void PlayerBlockCollisions()
+    public void PlayerBlockCollisions(Player character, short OldXMap)
     {
         character.IsFalling = true;
 
@@ -151,10 +152,11 @@ class CompleteRoom
         {
             character.X = character.OldX;
             character.Y = character.OldY;
+            Xmap = OldXMap;
         }
     }
 
-    public void CreateNewShots(Hardware hardware)
+    public void CreateNewShots(Hardware hardware, Player character)
     {
         character.CreateNewShots(hardware, WeaponList);
     }

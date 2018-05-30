@@ -77,9 +77,23 @@ class Sprite
 
     public bool IsOver(Sprite sprite)
     {
-        return (this.CollidesWith(sprite, (short)(this.SpriteWidth-1), (short)(this.SpriteHeight - 1),
+        return  (this.CollidesWith(sprite, (short)(this.SpriteWidth-1), (short)(this.SpriteHeight - 1),
                 (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight-1)) &&
                 sprite.Y >= this.Y + this.SpriteHeight * 0.9);
+    }
+
+    public bool IsRight(Sprite sprite)
+    {
+        return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1)) &&
+                sprite.X >= this.X + this.SpriteWidth * 0.9);
+    }
+
+    public bool IsLeft(Sprite sprite)
+    {
+        return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1)) &&
+                this.X >= sprite.X + sprite.SpriteWidth * 0.9);
     }
 
 

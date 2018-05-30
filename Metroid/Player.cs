@@ -369,7 +369,6 @@ class Player : MovableSprite
             Fall();
         }
 
-        /*TODO: Make the jump speed constant counting frames*/
         if (IsJumping)
         {
             FramesJumping++;
