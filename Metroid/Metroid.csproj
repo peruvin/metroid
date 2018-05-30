@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BasicBeam.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="ChargedBasicBeam.cs" />
     <Compile Include="CompleteRoom.cs" />
     <Compile Include="CreditsScreen.cs" />
     <Compile Include="Door.cs" />
@@ -94,6 +95,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="maps\3.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\4.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

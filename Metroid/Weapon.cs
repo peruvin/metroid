@@ -14,6 +14,7 @@ class Weapon : MovableSprite
     public bool IsVisible { get; set; }
     public bool IsDetonated { get; set; }
     public short FramesDetonating { get; set; }
+    public bool IsCharged { get; set; }
 
     public Weapon(short XIncrement, short YIncrement, int Damage, Player shootBy) : base(new Image("img/weapon.png", 445, 1168))
     {
@@ -24,6 +25,7 @@ class Weapon : MovableSprite
         CanShoot = false;
         IsVisible = true;
         IsDetonated = false;
+        IsCharged = false;
         FramesDetonating = 0;
     }
 
@@ -42,7 +44,7 @@ class Weapon : MovableSprite
             YIncrement = 0;
             FramesDetonating++;
             FiniteAnimate(MovableSprite.SpriteMovement.DETONATION, 200);
-            if (FramesDetonating > 50)
+            if (FramesDetonating > 60)
             {
                 IsDetonated = true;
             }

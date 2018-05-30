@@ -7,8 +7,8 @@ class SquareRoom
 {
     /*TODO: Increase the SQUAREROOM_HEIGHT and SQUAREROOM_WIDTH and draw bigger SquareRooms in the .dat files*/
 
-    public const short SQUAREROOM_HEIGHT = 10;
-    public const short SQUAREROOM_WIDTH = 10;
+    public const short SQUAREROOM_HEIGHT = 20;
+    public const short SQUAREROOM_WIDTH = 20;
 
     public int PositionXInCompleteRoom { get; set; }
     public int PositionYInCompleteRoom { get; set; }
@@ -79,11 +79,6 @@ class SquareRoom
                                         (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
                                         (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
                                     break;
-                                case 'D':
-                                    SourceRoom.DoorList.Add(new Door(
-                                       (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (numcolumn * 16)),
-                                       (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (numrow * 16))));
-                                    break;
                                 default:
                                     break;
                             }
@@ -113,7 +108,10 @@ class SquareRoom
 
                                     SourceRoom.DoorList.Add(new Door(
                                         (short)((16 * PositionXInCompleteRoom * SQUAREROOM_HEIGHT) + (xdoor * 16)),
-                                        (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (ydoor * 16))));
+                                        (short)((16 * PositionYInCompleteRoom * SQUAREROOM_WIDTH) + (ydoor * 16)),
+                                        int.Parse(coordinates[2]),
+                                        short.Parse(coordinates[3]),
+                                        short.Parse(coordinates[4])));
                                     
                                 }
                                 break;

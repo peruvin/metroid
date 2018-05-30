@@ -4,8 +4,7 @@
 class Player : MovableSprite
 {
 
-    const short MAX_VERTICAL_SPEED = 16;
-    const short VERTICAL_SPEED_DECREMENT = 2;
+    const short MAX_VERTICAL_SPEED = 2;
 
     public short[] HealthPoints { get; set; }
     public string LastMovement { get; set; }
@@ -14,12 +13,14 @@ class Player : MovableSprite
     public bool IsChrouching { get; set; }
     public bool IsBallForm { get; set; }
     public bool CanConvertToBall { get; set; }
+    
     public bool IsAimingDiagonal { get; set; }
     public bool IsLookingUp { get; set; }
     public bool IsFalling { get; set; }
     public bool IsJumping { get; set; }
 
     public short VerticalSpeed { get; set; }
+    public int FramesJumping { get; set; }
 
     public short OldX;
     public short OldY;
@@ -27,6 +28,8 @@ class Player : MovableSprite
     public Weapon PrimaryWeapon {get;set;}
     public Weapon MissileWeapon { get; set; }
     public Weapon SphereBombs { get; set; }
+
+    public int timeCharging { get; set; }
 
 
     public Player() : base(new Image("img/samus.gif", 1333, 757))
@@ -43,6 +46,8 @@ class Player : MovableSprite
         IsFalling = false;
         IsJumping = false;
         VerticalSpeed = 0;
+        timeCharging = 0;
+        FramesJumping=0;
 
         PrimaryWeapon = new BasicBeam(1, 1, this);
 
@@ -112,70 +117,102 @@ class Player : MovableSprite
         if (hardware.IsKeyPressed(Hardware.KEY_M))
         {
             PrimaryWeapon.CanShoot = true;
+            timeCharging++;
+        }
+
+        if(timeCharging>200)
+        {
+            PrimaryWeapon.IsCharged = true;
         }
 
         if (!hardware.IsKeyPressed(Hardware.KEY_M) && PrimaryWeapon.CanShoot)
         {
+            timeCharging = 0;
             PrimaryWeapon.CanShoot = false;
-            BasicBeam tempbeam;
+
+            short tempweapX;
+            short tempweapY;
+            short xinc;
+            short yinc;
 
             switch (AimDirection)
             {
-                /*TODO: Starting X and Y will change slightly their positions*/
                 case "LEFT":
-                    tempbeam = new BasicBeam(-1, 0, this);
-                    tempbeam.X = (short)(this.X-8);
-                    tempbeam.Y = (short)(this.Y+16);
+
+                    xinc = -1;
+                    yinc = 0;
+                    tempweapX = (short)(this.X-8);
+                    tempweapY = (short)(this.Y+16);
                     break;
                 case "RIGHT":
-                    tempbeam = new BasicBeam(1, 0, this);
-                    tempbeam.X = (short)(this.X+24);
-                    tempbeam.Y = (short)(this.Y+16);
+                    xinc = 1;
+                    yinc = 0;
+                    tempweapX = (short)(this.X+24);
+                    tempweapY = (short)(this.Y+16);
                     break;
                 case "LEFT_UP_DIAGONAL":
-                    tempbeam = new BasicBeam(-1, -1, this);
-                    tempbeam.X = (short)(this.X-8);
-                    tempbeam.Y = (short)(this.Y);
+                    xinc = -1;
+                    yinc = -1;
+                    tempweapX = (short)(this.X-8);
+                    tempweapY = (short)(this.Y);
                     break;
                 case "RIGHT_UP_DIAGONAL":
-                    tempbeam = new BasicBeam(1, -1, this);
-                    tempbeam.X = (short)(this.X+24);
-                    tempbeam.Y = (short)(this.Y);
+                    xinc = 1;
+                    yinc = -1;
+                    tempweapX = (short)(this.X+24);
+                    tempweapY = (short)(this.Y);
                     break;
                 case "CHROUCH_LEFT":
-                    tempbeam = new BasicBeam(-1, 0, this);
-                    tempbeam.X = (short)(this.X-8);
-                    tempbeam.Y = (short)(this.Y+28);
+                    xinc = -1;
+                    yinc = 0;
+                    tempweapX = (short)(this.X-8);
+                    tempweapY = (short)(this.Y+28);
                     break;
                 case "CHROUCH_RIGHT":
-                    tempbeam = new BasicBeam(1, 0, this);
-                    tempbeam.X = (short)(this.X+24);
-                    tempbeam.Y = (short)(this.Y+28);
+                    xinc = 1;
+                    yinc = 0;
+                    tempweapX = (short)(this.X+24);
+                    tempweapY = (short)(this.Y+28);
                     break;
                 case "CHROUCH_LEFT_DOWN_DIAGONAL":
-                    tempbeam = new BasicBeam(-1, 1, this);
-                    tempbeam.X = (short)(this.X - 10);
-                    tempbeam.Y = (short)(this.Y + 38);
+                    xinc = -1;
+                    yinc = 1;
+                    tempweapX = (short)(this.X - 10);
+                    tempweapY = (short)(this.Y + 38);
                     break;
                 case "CHROUCH_RIGHT_DOWN_DIAGONAL":
-                    tempbeam = new BasicBeam(1, 1, this);
-                    tempbeam.X = (short)(this.X + 26);
-                    tempbeam.Y = (short)(this.Y + 40);
+                    xinc = 1;
+                    yinc = 1;
+                    tempweapX = (short)(this.X + 26);
+                    tempweapY = (short)(this.Y + 40);
                     break;
                 case "UP":
-                    tempbeam = new BasicBeam(0, -1, this);
-                    tempbeam.X = (short)(this.X);
-                    tempbeam.Y = (short)(this.Y);
+                    xinc = 0;
+                    yinc = -1;
+                    tempweapX = (short)(this.X);
+                    tempweapY = (short)(this.Y);
                     break;
                 default:
-                    tempbeam = new BasicBeam(1, 1, this);
+                    xinc = 1;
+                    yinc = 0;
+                    tempweapX = (short)(this.X);
+                    tempweapY = (short)(this.Y);
                     break;
             }
 
-            if (tempbeam != null)
+            if (PrimaryWeapon.IsCharged)
             {
-                weaponList.Add(tempbeam);
+               ChargedBasicBeam temp = new ChargedBasicBeam(xinc, yinc, this);
+               temp.MoveTo(tempweapX, tempweapY);
+               weaponList.Add(temp);
             }
+            else
+            {
+                BasicBeam temp = new BasicBeam(xinc,yinc,this);
+                temp.MoveTo(tempweapX,tempweapY);
+                weaponList.Add(temp);
+            }
+            PrimaryWeapon.IsCharged = false;
 
 
         }
@@ -335,12 +372,13 @@ class Player : MovableSprite
         /*TODO: Make the jump speed constant counting frames*/
         if (IsJumping)
         {
+            FramesJumping++;
             MoveTo(X, (short)(Y + VerticalSpeed));
-            VerticalSpeed += VERTICAL_SPEED_DECREMENT;
-            if(VerticalSpeed>=0)
+            if(FramesJumping>100)
             {
                 IsJumping = false;
                 IsFalling = true;
+                FramesJumping = 0;
             }
         }
 
@@ -349,6 +387,7 @@ class Player : MovableSprite
         {
             IsJumping = true;
             VerticalSpeed = (short)(-1 * MAX_VERTICAL_SPEED);
+            FramesJumping = 0;
         }
 
 

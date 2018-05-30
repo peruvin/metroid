@@ -9,8 +9,11 @@ class Door : MovableSprite
     public short YApparitionPlayer { get; set; }
     
 
-    public Door(short X, short Y) : base(new Image("img/1718.png", 950, 950))
+    public Door(short X, short Y, int GoTo, short XAppPlayer, short YAppPlayer) : base(new Image("img/1718.png", 950, 950))
     {
+        this.GoTo = GoTo;
+        this.XApparitionPlayer = XAppPlayer;
+        this.YApparitionPlayer = YAppPlayer;
         this.X = X;
         this.Y = Y;
         SpriteWidth = 16;

@@ -68,8 +68,11 @@ class CompleteRoom
     {
         foreach (Weapon shot in WeaponList)
         {
-            shot.MoveShot();
-            hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
+            if(!shot.IsDetonated)
+            {
+                shot.MoveShot();
+                hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
+            }
 
         }
     }

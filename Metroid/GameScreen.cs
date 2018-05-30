@@ -76,15 +76,18 @@ class GameScreen : Screen
             // 4. Check collisions and update game state
 
 
-            /*If the player collides width a door, he will move to the room where the door is pointing*/
-            newroom =AllRooms[PosCurrentRoom].PlayerDoorCollisions();
-            if(newroom.numRoom >= 0)
-            {
-                PosCurrentRoom = newroom.numRoom;
-                AllRooms[PosCurrentRoom].character.MoveTo(newroom.Xplayer,newroom.Yplayer);
-            }
+            
+            
             AllRooms[PosCurrentRoom].PlayerBlockCollisions();
             AllRooms[PosCurrentRoom].WeaponBlockCollisions();
+
+            newroom = AllRooms[PosCurrentRoom].PlayerDoorCollisions();
+            if (newroom.numRoom >= 0)
+            {
+                /*If the player collides width a door, he will move to the room where the door is pointing*/
+                PosCurrentRoom = newroom.numRoom;
+                AllRooms[PosCurrentRoom].character.MoveTo(newroom.Xplayer, newroom.Yplayer);
+            }
 
             // 5. Pause game
 
