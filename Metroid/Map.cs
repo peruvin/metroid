@@ -53,6 +53,7 @@ class Map
         string SquareRoomId;
         int posXInCompleteRoom;
         int posYInCompleteRoom;
+        short maxposX = 0;
 
         try
         {
@@ -66,7 +67,7 @@ class Map
                     CompleteRoomId = line.Split('#')[0];
                     infoSquareRooms =line.Split('#')[1];
                     allRooms.Add(new CompleteRoom(CompleteRoomId));
-
+                    maxposX = 0;
                     foreach (string squareroominfo in infoSquareRooms.Split(':'))
                     {
                         SquareRoomId = squareroominfo.Split('=')[0];
@@ -75,9 +76,15 @@ class Map
 
                         posXInCompleteRoom = Int32.Parse(xycoordinates.Split(',')[0]);
                         posYInCompleteRoom = Int32.Parse(xycoordinates.Split(',')[1]);
+                        
+                        if(posXInCompleteRoom>maxposX)
+                        {
+                            maxposX = (short)posXInCompleteRoom;
+                        }
 
                         allRooms[allRooms.Count-1].AddSquareRoom( SquareRoomId, posXInCompleteRoom, posYInCompleteRoom);
                     }
+                    allRooms[allRooms.Count - 1].Width =(short)((maxposX+1)*SquareRoom.SQUAREROOM_WIDTH*16);
                     allRooms[allRooms.Count - 1].LoadCompleteRoom();
 
                 }

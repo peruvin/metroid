@@ -73,7 +73,7 @@ class GameScreen : Screen
             OldXmap = AllRooms[PosCurrentRoom].Xmap;
             
             character.FillOldCoordinates();
-            character.MovePlayer(hardware);
+            character.MovePlayer(hardware,AllRooms[PosCurrentRoom]);
             AllRooms[PosCurrentRoom].CreateNewShots(hardware, character);
             // 3. Move enemies and objects
 

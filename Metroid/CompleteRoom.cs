@@ -58,7 +58,8 @@ class CompleteRoom
     {
         foreach(Block block in BlocksList)
         {
-            hardware.DrawSprite(block.SpriteSheet, block.X, block.Y, block.SpriteX, block.SpriteY, block.SpriteWidth, block.SpriteHeight);
+            //Testing the horizontal scroll
+            hardware.DrawSprite(block.SpriteSheet, (short)(block.X-Xmap), block.Y, block.SpriteX, block.SpriteY, block.SpriteWidth, block.SpriteHeight);
             block.Animate(MovableSprite.SpriteMovement.STILL_CENTER, 1);
         }
     }
@@ -72,7 +73,7 @@ class CompleteRoom
             if(!shot.IsDetonated)
             {
                 shot.MoveShot();
-                hardware.DrawSprite(shot.SpriteSheet, shot.X, shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
+                hardware.DrawSprite(shot.SpriteSheet, (short)(shot.X-Xmap), shot.Y, shot.SpriteX, shot.SpriteY, shot.SpriteWidth, shot.SpriteHeight);
             }
 
         }
@@ -82,7 +83,7 @@ class CompleteRoom
     {
         foreach(Door door in DoorList)
         {
-            hardware.DrawSprite(door.SpriteSheet, door.X, door.Y, door.SpriteX, door.SpriteY, door.SpriteWidth, door.SpriteHeight);
+            hardware.DrawSprite(door.SpriteSheet, (short)(door.X-Xmap), door.Y, door.SpriteX, door.SpriteY, door.SpriteWidth, door.SpriteHeight);
         }
     }
 
@@ -96,7 +97,7 @@ class CompleteRoom
 
     public void DrawPlayer(Hardware hardware, Player character)
     {
-        hardware.DrawSprite(character.SpriteSheet, character.X, character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
+        hardware.DrawSprite(character.SpriteSheet, (short)(character.X), character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
 
     }
 
@@ -106,7 +107,7 @@ class CompleteRoom
         {
             foreach (Block block in BlocksList)
             {
-                if (shot.CollidesWith(block))
+                if (shot.CollidesWith(block, Xmap))
                 {
                     shot.IsVisible = false;
                 }
@@ -124,7 +125,7 @@ class CompleteRoom
 
         foreach(Door door in DoorList)
         {
-            if(character.CollidesWith(door))
+            if(character.CollidesWith(door, Xmap))
             {
                 infomovingroom.numRoom = door.GoTo;
                 infomovingroom.Xplayer = door.XApparitionPlayer;
@@ -141,24 +142,26 @@ class CompleteRoom
 
         foreach (Block block in BlocksList)
         {
-            if (character.IsOver(block))
+            if (character.IsOver(block,Xmap))
             {
                 character.MoveTo(character.X, (short)(block.Y - character.SpriteHeight));
                 character.IsFalling = false;
             }
         }
 
-        if (character.CollidesWith(BlocksList))
+        if (character.CollidesWith(BlocksList,Xmap))
         {
             character.X = character.OldX;
             character.Y = character.OldY;
+
+            
             Xmap = OldXMap;
         }
     }
 
     public void CreateNewShots(Hardware hardware, Player character)
     {
-        character.CreateNewShots(hardware, WeaponList);
+        character.CreateNewShots(hardware, WeaponList, Xmap);
     }
 
 

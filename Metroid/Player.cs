@@ -110,7 +110,7 @@ class Player : MovableSprite
 
 
 
-    public void CreateNewShots(Hardware hardware, List<Weapon> weaponList)
+    public void CreateNewShots(Hardware hardware, List<Weapon> weaponList,short XOffset)
     {
         /*For now, it always creates a BasicBeam shot, later, I will add another weapon parameter to create shots from that specific class*/
 
@@ -203,13 +203,13 @@ class Player : MovableSprite
             if (PrimaryWeapon.IsCharged)
             {
                ChargedBasicBeam temp = new ChargedBasicBeam(xinc, yinc, this);
-               temp.MoveTo(tempweapX, tempweapY);
+               temp.MoveTo((short)(tempweapX +XOffset), tempweapY);
                weaponList.Add(temp);
             }
             else
             {
                 BasicBeam temp = new BasicBeam(xinc,yinc,this);
-                temp.MoveTo(tempweapX,tempweapY);
+                temp.MoveTo((short)(tempweapX+XOffset),tempweapY);
                 weaponList.Add(temp);
             }
             PrimaryWeapon.IsCharged = false;
@@ -219,9 +219,18 @@ class Player : MovableSprite
 
     }
 
-    public void MoveLeft()
+    public void MoveLeft(CompleteRoom room)
     {
-        MoveTo((short)(X - 1), Y);
+
+        if (X == Program.SCREEN_WIDTH / 2 && room.Xmap>0)
+        {
+            room.Xmap--;
+        }
+        else
+        {
+            MoveTo((short)(X - 1), Y);
+        }
+            
 
         if (IsBallForm)
         {
@@ -244,9 +253,17 @@ class Player : MovableSprite
 
     }
 
-    public void MoveRight()
+    public void MoveRight(CompleteRoom room)
     {
-        MoveTo((short)(X + 1), Y);
+        if(X == Program.SCREEN_WIDTH/2 && room.Xmap < room.Width -Program.SCREEN_WIDTH)
+        {
+            room.Xmap++;
+        }
+        else
+        {
+            MoveTo((short)(X + 1), Y);
+        }
+        
 
         if (IsBallForm)
         {
@@ -351,7 +368,7 @@ class Player : MovableSprite
         }
     }
 
-    public void MovePlayer(Hardware hardware)
+    public void MovePlayer(Hardware hardware, CompleteRoom room)
     {
 
         
@@ -397,7 +414,7 @@ class Player : MovableSprite
             {
                 IsAimingDiagonal = true;
             }
-            MoveLeft();
+            MoveLeft(room);
         }
 
         if (hardware.IsKeyPressed(Hardware.KEY_D))
@@ -406,7 +423,7 @@ class Player : MovableSprite
             {
                 IsAimingDiagonal = true;
             }
-            MoveRight();
+            MoveRight(room);
         }
 
 

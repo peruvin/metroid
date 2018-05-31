@@ -4,7 +4,8 @@
 class MenuScreen : Screen
 {
     Image Background;
-    Image Menu;
+    Image MenuEsp;
+    Image MenuEn;
     Image Finger;
     int currPos;
     bool CanGoUp { get; set; }
@@ -15,84 +16,124 @@ class MenuScreen : Screen
     {
         
         Background = new Image("img/stars.png", 800, 500);
-        Menu = new Image("img/menuOptions.png",600,300);
+        MenuEsp = new Image("img/OptionsES.png",600,300);
+        MenuEn = new Image("img/OptionsEN.png", 600, 300);
         Finger = new Image("img/finger.png",296,171);
         currPos = 0;
         CanGoUp = false;
         CanGoDown = false;
         CanSelect = false;
+        
     }
 
 
     public override void Show()
     {
         Background.MoveTo(0,0);
-        Menu.MoveTo(10,100);
-        Finger.MoveTo(30,100);
+        MenuEn.MoveTo(50,105);
+        MenuEsp.MoveTo(50, 105);
+        Finger.MoveTo(5,100);
         int OptionSelected=-1;
-
+        string lang = "EN";
         do
         {
-            hardware.ClearScreen();
-            hardware.DrawImage(Background);
-            hardware.DrawImage(Menu);
-            hardware.DrawImage(Finger);
-            hardware.UpdateScreen();
-
-            if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+            
+            do
             {
-                CanSelect = true;
-            }
-
-            if (!hardware.IsKeyPressed(Hardware.KEY_SPACE)&&CanSelect)
-            {
-                OptionSelected = currPos;
-            }
-
-            if (hardware.IsKeyPressed(Hardware.KEY_W)) 
-            {
-                CanGoUp = true;
-            }
-
-            if (hardware.IsKeyPressed(Hardware.KEY_S))
-            {
-                CanGoDown = true;
-            }
-
-            if (!hardware.IsKeyPressed(Hardware.KEY_W)&&CanGoUp)
-            {
-                CanGoUp = false;
-                if (currPos == 0)
+                OptionSelected = -1;
+                hardware.ClearScreen();
+                hardware.DrawImage(Background);
+                if (lang == "EN")
                 {
-                    currPos = 3;
-                    Finger.MoveTo(30, 300);
+                    hardware.DrawImage(MenuEn);
                 }
-                else
+                else if (lang == "ES")
                 {
-                    currPos--;
-                    Finger.MoveTo(30, (short)(Finger.Y - 65));
+                    hardware.DrawImage(MenuEsp);
                 }
-            }
 
-            if (!hardware.IsKeyPressed(Hardware.KEY_S) && CanGoDown)
+
+                hardware.DrawImage(Finger);
+                hardware.UpdateScreen();
+
+                if (hardware.IsKeyPressed(Hardware.KEY_SPACE))
+                {
+                    CanSelect = true;
+                }
+
+                if (!hardware.IsKeyPressed(Hardware.KEY_SPACE) && CanSelect)
+                {
+                    OptionSelected = currPos;
+                    CanSelect = false;
+                }
+
+
+
+                if (hardware.IsKeyPressed(Hardware.KEY_W))
+                {
+                    CanGoUp = true;
+                }
+
+                if (hardware.IsKeyPressed(Hardware.KEY_S))
+                {
+                    CanGoDown = true;
+                }
+
+                if (!hardware.IsKeyPressed(Hardware.KEY_W) && CanGoUp)
+                {
+                    CanGoUp = false;
+                    if (currPos == 0)
+                    {
+                        currPos = 4;
+                        Finger.MoveTo(5, 200);
+                    }
+                    else
+                    {
+                        currPos--;
+                        Finger.MoveTo(5, (short)(Finger.Y - 25));
+                    }
+                }
+
+                if (!hardware.IsKeyPressed(Hardware.KEY_S) && CanGoDown)
+                {
+                    CanGoDown = false;
+                    if (currPos == 4)
+                    {
+                        currPos = 0;
+                        Finger.MoveTo(5, 100);
+                    }
+                    else
+                    {
+                        currPos++;
+                        Finger.MoveTo(5, (short)(Finger.Y + 25));
+                    }
+                }
+
+
+            }
+            while (OptionSelected == -1);
+
+            /*Switch case here, to call different methods*/
+
+            switch (OptionSelected)
             {
-                CanGoDown = false;
-                if (currPos == 3)
-                {
-                    currPos = 0;
-                    Finger.MoveTo(30, 100);
-                }
-                else
-                {
-                    currPos++;
-                    Finger.MoveTo(30, (short)(Finger.Y + 65));
-                }
+                case 1:
+                    if(lang=="ES")
+                    {
+                        lang = "EN";
+                    }
+                    else if(lang=="EN")
+                    {
+                        lang = "ES";
+                    }
+                    
+                    break;
+                default:
+                    break;
+                    
             }
-
-
-        }
-        while (OptionSelected==-1);
-
-        /*Switch case here, to call different methods*/
+        } while (OptionSelected!=0);
+        
+            
     }
 }

@@ -103,3 +103,5 @@ C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Metroid.exe
 C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\Metroid.pdb
 C:\Users\Keru\Desktop\metroid\Metroid\obj\Debug\Metroid.csprojResolveAssemblyReference.cache
 C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\4.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\OptionsEN.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\OptionsES.png

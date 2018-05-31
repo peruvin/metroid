@@ -42,30 +42,30 @@ class Sprite
         Y = y;
     }
 
-    public bool CollidesWith(Sprite sp)
+    public bool CollidesWith(Sprite sp, short xOffset)
     {
 
 
         return (
-                X + SpriteWidth-(HitboxXMarginRight) > (sp.X+sp.HitboxXMarginLeft) && 
-                X+HitboxXMarginLeft < sp.X + sp.SpriteWidth-(sp.HitboxXMarginRight) &&
-                Y + SpriteHeight -(HitboxYMarginDown) > (sp.Y+sp.HitboxYMarginUp) && 
-                Y+HitboxYMarginUp < sp.Y + sp.SpriteHeight-(sp.HitboxYMarginDown)
+                X +  xOffset + SpriteWidth-(HitboxXMarginRight) > (sp.X+sp.HitboxXMarginLeft) && 
+                X + xOffset + HitboxXMarginLeft < sp.X + sp.SpriteWidth-(sp.HitboxXMarginRight) &&
+                Y  + SpriteHeight -(HitboxYMarginDown) > (sp.Y+sp.HitboxYMarginUp) && 
+                Y  + HitboxYMarginUp < sp.Y + sp.SpriteHeight-(sp.HitboxYMarginDown)
                 );
     }
 
-    public bool CollidesWith(List<Sprite> sprites)
+    public bool CollidesWith(List<Sprite> sprites, short xOffset)
     {
         foreach (Sprite sp in sprites)
-            if (this.CollidesWith(sp))
+            if (this.CollidesWith(sp, xOffset))
                 return true;
         return false;
     }
 
-    public bool CollidesWith(Sprite sprite, short w1, short h1, short w2, short h2)
+    public bool CollidesWith(Sprite sprite, short w1, short h1, short w2, short h2, short xOffset)
     {
-        return (X + w1 - (HitboxXMarginRight) >= sprite.X+sprite.HitboxXMarginLeft && 
-                X+HitboxXMarginLeft <= sprite.X + w2 - (sprite.HitboxXMarginRight) &&
+        return (X + xOffset + w1 - (HitboxXMarginRight) >= sprite.X+sprite.HitboxXMarginLeft && 
+                X + xOffset + HitboxXMarginLeft <= sprite.X + w2 - (sprite.HitboxXMarginRight) &&
                 Y + h1  -(HitboxYMarginDown)>= sprite.Y+sprite.HitboxYMarginUp && 
                 Y +HitboxYMarginUp <= sprite.Y + h2 -sprite.HitboxYMarginDown);
     }
@@ -75,24 +75,24 @@ class Sprite
         Y++;
     }
 
-    public bool IsOver(Sprite sprite)
+    public bool IsOver(Sprite sprite, short xOffset)
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth-1), (short)(this.SpriteHeight - 1),
-                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight-1)) &&
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight-1), xOffset) &&
                 sprite.Y >= this.Y + this.SpriteHeight * 0.9);
     }
 
-    public bool IsRight(Sprite sprite)
+    public bool IsRight(Sprite sprite, short xOffset)
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
-                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1)) &&
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1), xOffset) &&
                 sprite.X >= this.X + this.SpriteWidth * 0.9);
     }
 
-    public bool IsLeft(Sprite sprite)
+    public bool IsLeft(Sprite sprite, short xOffset)
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
-                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1)) &&
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1), xOffset) &&
                 this.X >= sprite.X + sprite.SpriteWidth * 0.9);
     }
 

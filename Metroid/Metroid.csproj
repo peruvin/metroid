@@ -117,6 +117,12 @@
     <Content Include="img\menuOptions.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="img\OptionsEN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\OptionsES.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="img\s1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
