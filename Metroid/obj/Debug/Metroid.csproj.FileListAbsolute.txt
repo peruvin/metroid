@@ -105,3 +105,7 @@ C:\Users\Keru\Desktop\metroid\Metroid\obj\Debug\Metroid.csprojResolveAssemblyRef
 C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\4.dat
 C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\OptionsEN.png
 C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\img\OptionsES.png
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\App.config
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\5.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\6.dat
+C:\Users\Keru\Desktop\metroid\Metroid\bin\Debug\maps\7.dat

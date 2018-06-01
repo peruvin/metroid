@@ -17,7 +17,8 @@ class Door : MovableSprite
         this.X = X;
         this.Y = Y;
         SpriteWidth = 16;
-        SpriteHeight = 16;     
+        SpriteHeight = 16;
+
     }
 
     public void ChangeDestination(int goTo, short xApparitionPlayer, short yApparitionplayer)

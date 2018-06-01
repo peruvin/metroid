@@ -81,14 +81,18 @@ class GameScreen : Screen
 
 
             
+            /* Attack of the enemies not finished yet
+            AllRooms[PosCurrentRoom].EnemyCollisions();
+            AllRooms[PosCurrentRoom].AttackPlayer(character);
+            */
             
             AllRooms[PosCurrentRoom].PlayerBlockCollisions(character,OldXmap);
             AllRooms[PosCurrentRoom].WeaponBlockCollisions();
-
+            
             newroom = AllRooms[PosCurrentRoom].PlayerDoorCollisions(character);
             if (newroom.numRoom >= 0)
             {
-                /*If the player collides width a door, he will move to the room where the door is pointing*/
+                /*If the player collides with a door, he will move to the room where the door is pointing*/
                 AllRooms[PosCurrentRoom].WeaponList.Clear();
                 PosCurrentRoom = newroom.numRoom;
                 character.MoveTo(newroom.Xplayer, newroom.Yplayer);

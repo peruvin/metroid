@@ -2,26 +2,17 @@
 
 class Enemy : MovableSprite
 {
-    public bool IsAttacking;
+    public bool IsAttacking { get; set; }
+    public short Damage { get; set; }
 
-    public Enemy(short X, short Y,Image SpriteSheet) : base(SpriteSheet)
+    public Enemy(short X, short Y,Image SpriteSheet, short Damage) : base(SpriteSheet)
     {
         this.X = X;
         this.Y = Y;
         SpriteWidth = 32;
         SpriteHeight = 28;
         IsAttacking = false;
-    }
-
-    public bool IsPlayerInRange(Player character)
-    {
-        if(character.Y==Y)
-        {
-            return true;
-        }
-
-        return false;
-
+        this.Damage = Damage;
     }
 }
 

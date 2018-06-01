@@ -6,7 +6,7 @@ class Player : MovableSprite
 
     const short MAX_VERTICAL_SPEED = 2;
 
-    public short[] HealthPoints { get; set; }
+    public short HealthPoints { get; set; }
     public string LastMovement { get; set; }
     public string AimDirection { get; set; }
 
@@ -48,6 +48,8 @@ class Player : MovableSprite
         VerticalSpeed = 0;
         timeCharging = 0;
         FramesJumping=0;
+
+        HealthPoints = 100;
 
         PrimaryWeapon = new BasicBeam(1, 1, this);
 
@@ -108,6 +110,12 @@ class Player : MovableSprite
         OldY = Y;
     }
 
+    public void GetDamage(Enemy enemy)
+    {
+
+            HealthPoints -= enemy.Damage;
+
+    }
 
 
     public void CreateNewShots(Hardware hardware, List<Weapon> weaponList,short XOffset)
@@ -390,7 +398,7 @@ class Player : MovableSprite
         {
             FramesJumping++;
             MoveTo(X, (short)(Y + VerticalSpeed));
-            if(FramesJumping>100)
+            if(FramesJumping>80)
             {
                 IsJumping = false;
                 IsFalling = true;

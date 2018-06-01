@@ -30,6 +30,8 @@ class Map
 
             file.WriteLine("A#1=0,0:2=1,0:3=2,0");
             file.WriteLine("B#4=0,0");
+            file.WriteLine("C#5=0,0:6=1,0:7=2,0");
+
 
             file.Close();
         }

@@ -1,5 +1,5 @@
 BBBBBBBBBBBBBBBBBBBB
-      W  
+         
          
        
 
@@ -10,13 +10,13 @@ BBBBBBBBBBBBBBBBBBBB
 
 
 
-BBBB
+
   
          
-             BBBB
-          BBB
-      BBBB   
+             
+          
+         
          
 BBBBBBBBBBBBBBBBBBBB
 
-
+DOORS=0,18,0,750,258

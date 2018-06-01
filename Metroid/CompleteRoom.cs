@@ -49,7 +49,7 @@ class CompleteRoom
     {
         foreach(EnemyWeaver enemy in EnemyList)
         {
-            hardware.DrawSprite(enemy.SpriteSheet, enemy.X, enemy.Y, enemy.SpriteX, enemy.SpriteY, enemy.SpriteWidth, enemy.SpriteHeight);
+            hardware.DrawSprite(enemy.SpriteSheet, (short)(enemy.X-Xmap), enemy.Y, enemy.SpriteX, enemy.SpriteY, enemy.SpriteWidth, enemy.SpriteHeight);
             enemy.Animate(MovableSprite.SpriteMovement.STILL_LEFT, 1);
         }
     }
@@ -97,7 +97,7 @@ class CompleteRoom
 
     public void DrawPlayer(Hardware hardware, Player character)
     {
-        hardware.DrawSprite(character.SpriteSheet, (short)(character.X), character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
+        hardware.DrawSprite(character.SpriteSheet, character.X, character.Y, character.SpriteX, character.SpriteY, character.SpriteWidth, character.SpriteHeight);
 
     }
 
@@ -129,7 +129,7 @@ class CompleteRoom
             {
                 infomovingroom.numRoom = door.GoTo;
                 infomovingroom.Xplayer = door.XApparitionPlayer;
-                infomovingroom.Xplayer = door.YApparitionPlayer;
+                infomovingroom.Yplayer = door.YApparitionPlayer;
             }
         }
 
@@ -142,20 +142,39 @@ class CompleteRoom
 
         foreach (Block block in BlocksList)
         {
+
             if (character.IsOver(block,Xmap))
             {
                 character.MoveTo(character.X, (short)(block.Y - character.SpriteHeight));
                 character.IsFalling = false;
             }
+
+            if(character.CollidesWith(block,Xmap))
+            {
+                character.X = character.OldX;
+                character.Y = character.OldY;
+                character.IsFalling = true;
+                Xmap = OldXMap;
+            }
+
+
         }
+    }
 
-        if (character.CollidesWith(BlocksList,Xmap))
+    public void EnemyCollisions()
+    {
+        foreach(EnemyWeaver enemy in EnemyList)
         {
-            character.X = character.OldX;
-            character.Y = character.OldY;
+            enemy.BlockCollisions(BlocksList,Xmap);
+            enemy.ReloadAttack();
+        }
+    }
 
-            
-            Xmap = OldXMap;
+    public void AttackPlayer(Player character)
+    {
+        foreach (EnemyWeaver enemy in EnemyList)
+        {
+            enemy.IsPlayerInRange(character,Xmap);
         }
     }
 

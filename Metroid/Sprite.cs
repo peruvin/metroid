@@ -79,22 +79,33 @@ class Sprite
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth-1), (short)(this.SpriteHeight - 1),
                 (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight-1), xOffset) &&
-                sprite.Y >= this.Y + this.SpriteHeight * 0.9);
+                sprite.Y > this.Y + this.SpriteHeight * 0.9);
     }
 
+    public bool IsDown(Sprite sprite, short xOffset)
+    {
+        return (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
+                (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1), xOffset) &&
+                this.Y > sprite.Y + sprite.SpriteHeight * 0.9);
+    }
+
+
+    /*TODO: Repair IsRight and IsLeft functions*/
     public bool IsRight(Sprite sprite, short xOffset)
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
                 (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1), xOffset) &&
-                sprite.X >= this.X + this.SpriteWidth * 0.9);
+                this.X+(this.SpriteWidth*0.9)<sprite.X);
     }
 
     public bool IsLeft(Sprite sprite, short xOffset)
     {
         return  (this.CollidesWith(sprite, (short)(this.SpriteWidth - 1), (short)(this.SpriteHeight - 1),
                 (short)(sprite.SpriteWidth - 1), (short)(sprite.SpriteHeight - 1), xOffset) &&
-                this.X >= sprite.X + sprite.SpriteWidth * 0.9);
+                this.X > sprite.X + (sprite.SpriteWidth * 0.9));
     }
+
+
 
 
 }
