@@ -81,10 +81,10 @@ class GameScreen : Screen
 
 
             
-            /* Attack of the enemies not finished yet
+            // Attack of the enemies not finished yet
             AllRooms[PosCurrentRoom].EnemyCollisions();
             AllRooms[PosCurrentRoom].AttackPlayer(character);
-            */
+            
             
             AllRooms[PosCurrentRoom].PlayerBlockCollisions(character,OldXmap);
             AllRooms[PosCurrentRoom].WeaponBlockCollisions();

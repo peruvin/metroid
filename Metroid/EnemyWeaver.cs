@@ -46,7 +46,7 @@ class EnemyWeaver : Enemy
         }
         else if(CanAttack)
         {
-            Y = Y++;
+            MoveTo(X, (short)(Y++));
         }
         
     }
@@ -71,7 +71,7 @@ class EnemyWeaver : Enemy
     {
         if(IsReloading)
         {
-            Y = Y--;
+            MoveTo(X,(short)(Y--));
         }        
     }
 }
